@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import PhoneList from './components/PhoneList/PhoneList';
-import PhoneDetail from './components/PhoneDetail/PhoneDetail';
+import PhoneList from './phone-list/PhoneList';
+import PhoneDetail from './phone-detail/PhoneDetail';
 import './App.css';
 
 function App() {
