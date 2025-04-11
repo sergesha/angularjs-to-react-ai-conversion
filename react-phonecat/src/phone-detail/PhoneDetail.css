@@ -1,12 +1,70 @@
-/* Phone detail specific styles */
-.phone-detail {
-  padding: 1em;
+/* View: Phone detail - exactly matching Angular styles */
+.phone {
+  background-color: white;
+  display: none;
+  float: left;
+  height: 400px;
+  margin-bottom: 2em;
+  margin-right: 3em;
+  padding: 2em;
+  width: 400px;
 }
 
 .phone.selected {
   display: block;
 }
 
+.phone-images {
+  background-color: white;
+  float: left;
+  height: 450px;
+  overflow: hidden;
+  position: relative;
+  width: 450px;
+}
+
+.phone-thumbs {
+  list-style: none;
+  margin: 0;
+}
+
+.phone-thumbs img {
+  height: 100px;
+  padding: 1em;
+  width: 100px;
+}
+
+.phone-thumbs li {
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  display: inline-block;
+  margin: 1em;
+}
+
+.specs {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.specs dt {
+  font-weight: bold;
+}
+
+.specs > li {
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+}
+
+.specs > li > span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Loading and error states */
 .loading, .error, .not-found {
   padding: 2em;
   text-align: center;
@@ -15,27 +73,4 @@
 
 .error {
   color: red;
-}
-
-/* Animation classes */
-.phone-detail-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.phone-detail-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.phone-detail-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.phone-detail-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
 }

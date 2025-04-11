@@ -29,18 +29,19 @@ const PhoneList = () => {
     setOrderProp(event.target.value);
   };
   
-  // Filter phones by query
+  // Filter phones by query - matching Angular's filtering logic
   const filteredPhones = phones.filter(phone => {
-    return phone.name.toLowerCase().includes(query.toLowerCase()) ||
-           phone.snippet.toLowerCase().includes(query.toLowerCase());
+    const lowerQuery = query.toLowerCase();
+    return phone.name.toLowerCase().includes(lowerQuery) ||
+           phone.snippet.toLowerCase().includes(lowerQuery);
   });
   
-  // Sort phones by selected property
+  // Sort phones by selected property - matching Angular's sorting logic
   const sortedPhones = [...filteredPhones].sort((a, b) => {
     if (orderProp === 'name') {
       return a.name.localeCompare(b.name);
     } else {
-      return a[orderProp] - b[orderProp];
+      return a.age - b.age; // Make sure sorting by age works exactly like Angular
     }
   });
   
@@ -48,13 +49,14 @@ const PhoneList = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-2">
-          {/* Sidebar content */}
+          {/* Sidebar content - exactly matching Angular structure */}
           <p>
             Search:
             <input 
               value={query}
               onChange={handleQueryChange}
               data-testid="phone-list-search"
+              className="form-control"
             />
           </p>
           
@@ -64,6 +66,7 @@ const PhoneList = () => {
               value={orderProp}
               onChange={handleOrderPropChange}
               data-testid="phone-list-sort"
+              className="form-control"
             >
               <option value="name">Alphabetical</option>
               <option value="age">Newest</option>
@@ -72,12 +75,15 @@ const PhoneList = () => {
         </div>
         
         <div className="col-md-10">
-          {/* Body content */}
+          {/* Body content - exactly matching Angular structure */}
           <ul className="phones">
             {sortedPhones.map(phone => (
-              <li key={phone.id} className="thumbnail phone-list-item">
+              <li key={phone.id} className="thumbnail">
                 <Link to={`/phones/${phone.id}`} className="thumb">
-                  <img src={`${process.env.PUBLIC_URL}/${phone.imageUrl}`} alt={phone.name} />
+                  <img 
+                    src={`${process.env.PUBLIC_URL}/${phone.imageUrl}`} 
+                    alt={phone.name}
+                  />
                 </Link>
                 <Link to={`/phones/${phone.id}`}>{phone.name}</Link>
                 <p>{phone.snippet}</p>

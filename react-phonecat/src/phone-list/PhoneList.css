@@ -1,15 +1,8 @@
-/* Phone list CSS styles */
+/* View: Phone list - exactly matching Angular styles */
 .phones {
   list-style: none;
   padding: 0;
-}
-
-.thumb {
-  float: left;
-  margin: -0.5em 1em 1.5em 0;
-  padding-bottom: 1em;
-  height: 100px;
-  width: 100px;
+  margin: 0;
 }
 
 .phones li {
@@ -18,66 +11,32 @@
   padding-top: 15px;
 }
 
-/** Detail View **/
-img.phone {
+.thumb {
   float: left;
-  margin-right: 3em;
-  margin-bottom: 2em;
-  background-color: white;
-  padding: 2em;
-  height: 400px;
-  width: 400px;
-  display: none;
-}
-
-img.phone:first-child {
-  display: block;
-}
-
-ul.phone-thumbs {
-  margin: 0;
-  list-style: none;
-}
-
-ul.phone-thumbs li {
-  border: 1px solid black;
-  display: inline-block;
-  margin: 1em;
-  background-color: white;
-}
-
-ul.phone-thumbs img {
   height: 100px;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
   width: 100px;
-  padding: 1em;
 }
 
-ul.phone-thumbs img:hover {
-  cursor: pointer;
+/* Search and filter styles */
+.phones p {
+  margin-bottom: 10px;
 }
 
-ul.specs {
-  clear: both;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Input and select styling to match Angular */
+input, select {
+  margin-left: 10px;
 }
 
-ul.specs > li {
-  display: inline-block;
-  width: 200px;
-  vertical-align: top;
+/* Phone list item styling */
+.thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
 }
 
-ul.specs > li > span {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-ul.specs dt {
-  font-weight: bold;
-}
-
-h1 {
-  border-bottom: 1px solid gray;
+.phone-list-item p {
+  margin: 8px 0;
 }

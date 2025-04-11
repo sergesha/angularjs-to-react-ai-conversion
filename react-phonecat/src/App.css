@@ -1,11 +1,15 @@
 /* Global app styling */
 body {
-  padding-top: 20px;
+  padding: 20px;
+}
+
+h1 {
+  border-bottom: 1px solid gray;
+  margin-top: 0;
 }
 
 .app {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 1em;
 }
 
 .view-container {
@@ -16,23 +20,13 @@ body {
   margin-top: 20px;
 }
 
-/* Animation classes */
+/* Animation classes - matching Angular animations */
 .view-frame.ng-enter, .view-frame.ng-leave {
   background: white;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-}
-
-.view-frame.ng-enter {
-  animation: 0.5s fade-in;
-  z-index: 100;
-}
-
-.view-frame.ng-leave {
-  animation: 0.5s fade-out;
-  z-index: 99;
 }
 
 @keyframes fade-in {
@@ -43,4 +37,17 @@ body {
 @keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+/* React Router transitions */
+.page-enter {
+  opacity: 0;
+  z-index: 100;
+  animation: 0.5s fade-in forwards;
+}
+
+.page-exit {
+  opacity: 1;
+  z-index: 99;
+  animation: 0.5s fade-out forwards;
 }
