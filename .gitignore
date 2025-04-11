@@ -2,16 +2,13 @@
 
 # dependencies
 /node_modules
-*/node_modules
-**/node_modules
+**/node_modules/
+react-phonecat/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
-/test-results/
-/playwright-report/
-/playwright/.cache/
 
 # production
 /build
@@ -29,11 +26,6 @@ yarn-error.log*
 
 # IDE specific files
 .idea/
+**/.idea/
 .vscode/
-*.swp
-*.swo
-
-# Generated files
-/dist
-/.awcache
-/.cache-loader
+**/.vscode/
