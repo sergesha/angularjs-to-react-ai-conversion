@@ -138,13 +138,17 @@ const PhoneService = {
       // Absolute path from root
       return imageUrl;
     } else if (imageUrl.startsWith('img/phones/')) {
-      // Path from original Angular app format
+      // Path from original Angular app format - common in phone list
       return `/assets/${imageUrl}`;
     } else if (imageUrl.startsWith('img/')) {
-      // Path relative to assets folder
+      // Path relative to assets folder - might be used in some contexts
       return `/assets/${imageUrl}`;
+    } else if (/^phones\/.*\.jpg$/.test(imageUrl)) {
+      // Format like "phones/motorola-xoom-with-wi-fi.0.jpg" from the original app
+      return `/assets/img/${imageUrl}`;
     } else {
       // Other paths, assume relative to assets/img/phones
+      // This handles cases like "motorola-xoom-with-wi-fi.0.jpg" in phone details
       return `/assets/img/phones/${imageUrl}`;
     }
   }
