@@ -1,85 +1,109 @@
 # React PhoneCat
 
-A React implementation of the original [Angular PhoneCat](https://github.com/angular/angular-phonecat) tutorial application.
+This project is a React implementation of the [AngularJS PhoneCat Tutorial App](https://github.com/angular/angular-phonecat).
 
 ## Overview
 
-This project is a conversion of the Angular PhoneCat application from AngularJS to React. The application displays a list of phones, allows users to search and filter them, and provides detailed information about each phone.
-
-## Features
-
-- Browse a catalog of phones
-- Search and filter phones by name
-- Sort phones by name or age
+The application displays a list of Android phones and allows users to:
+- Browse through a catalog of phones
+- Filter and sort the phone list
 - View detailed specifications for each phone
-- Interactive image gallery
-
-## Technologies Used
-
-- React 18
-- React Router 6
-- Axios for API requests
-- CSS for styling
-- Bootstrap 5 (for basic grid and utilities)
+- Browse through phone images
 
 ## Project Structure
 
+The project follows a similar structure to the original AngularJS application:
+
 ```
 src/
-├── components/       # Reusable components
-│   ├── PhoneDetail/  # Phone details component
-│   └── PhoneList/    # Phone list component
-├── services/         # API services
-├── utils/            # Utility functions
-├── App.js            # Main app with routing
-└── index.js          # Entry point
+├── core/              # Core modules and services
+│   ├── checkmark/     # Checkmark utility (similar to AngularJS filter)
+│   └── phone/         # Phone service
+├── phone-list/        # Phone list component
+├── phone-detail/      # Phone detail component
+├── phones/            # Phone data
+├── App.js             # Main application component
+└── index.js           # Application entry point
 ```
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+### Prerequisites
 
-### `npm start`
+- Node.js and npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
 
-### `npm test`
+```bash
+# Clone the repository
+git clone <repository-url>
 
-Launches the test runner in the interactive watch mode.
+# Navigate to the project directory
+cd react-phonecat
 
-### `npm run build`
+# Install dependencies
+npm install
+```
 
-Builds the app for production to the `build` folder.
+### Running the Application
 
-## How the Project Was Created
+```bash
+# Start the development server
+npm start
+```
 
-This project was converted from AngularJS to React using a comprehensive prompt library specifically designed for this purpose. The library contains prompts for converting various AngularJS constructs (components, services, templates, etc.) to their React equivalents.
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-The conversion approach focused on:
+### Building for Production
 
-1. Converting AngularJS components to React functional components with hooks
-2. Replacing AngularJS services with custom hooks and context
-3. Converting AngularJS templates to JSX
-4. Implementing React Router for navigation
-5. Maintaining the same styling and UX
+```bash
+# Build the application
+npm run build
+```
+
+## Testing
+
+### Running Tests
+
+```bash
+# Run unit tests
+npm test
+
+# Run end-to-end tests
+npm run test:e2e
+
+# Run comparison tests between Angular and React versions
+npm run test:comparison
+
+# Run visual comparison tests
+npm run test:visual
+```
 
 ## Comparison with AngularJS Version
 
-### Key Differences
+This React implementation aims to maintain feature parity with the original AngularJS application:
 
-- **State Management**: Uses React hooks instead of AngularJS's two-way binding
-- **Templating**: Uses JSX instead of AngularJS templates
-- **Routing**: Uses React Router instead of ngRoute
-- **Services**: Uses custom services with Axios instead of $resource
+1. **Components** - Converted AngularJS components to React components
+2. **Services** - Replaced AngularJS services with React hooks and context
+3. **Routing** - Implemented React Router instead of ngRoute
+4. **Filters** - Converted AngularJS filters to JavaScript utility functions
+5. **Templates** - Replaced AngularJS templates with JSX
+6. **Styling** - Maintained the same visual appearance
 
-### Performance Improvements
+## Documentation
 
-- More efficient rendering with React's virtual DOM
-- Improved bundle size and loading performance
-- Better code organization with component-based architecture
+Additional documentation can be found in the following files:
 
-## Acknowledgments
+- [Conversion Log](./CONVERSION-LOG.md) - Details about the conversion process
+- [Playwright Testing](./PLAYWRIGHT-TESTING.md) - Information about the testing approach
 
-- The original [AngularJS PhoneCat tutorial](https://github.com/angular/angular-phonecat)
-- Create React App for project bootstrapping
+## Technologies Used
+
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Playwright](https://playwright.dev/) (for testing)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

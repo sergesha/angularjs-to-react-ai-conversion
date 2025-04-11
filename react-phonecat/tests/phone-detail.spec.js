@@ -1,57 +1,110 @@
-// @ts-check
 const { test, expect } = require('@playwright/test');
 
-test.describe('Phone Detail Component', () => {
-  test.beforeEach(async ({ page }) => {
-    // Navigate to a specific phone detail page
-    await page.goto('/phones/nexus-s');
+test.describe('PhoneDetail Component', () => {
+  test('should display the selected phone details', async ({ page }) => {
+    // Go to the Angular version of a specific phone
+    await page.goto('http://localhost:8000/#!/phones/nexus-s');
+    
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('h1');
+    
+    // Get the phone name from Angular version
+    const angularPhoneName = await page.locator('h1').textContent();
+    
+    // Go to the React version of the same phone
+    await page.goto('http://localhost:3000/phones/nexus-s');
+    
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('h1');
+    
+    // Get the phone name from React version
+    const reactPhoneName = await page.locator('h1').textContent();
+    
+    // Compare the names
+    expect(reactPhoneName).toBe(angularPhoneName);
+    
+    // Check if the thumbnails are displayed in both versions
+    const angularThumbnailsCount = await page.goto('http://localhost:8000/#!/phones/nexus-s')
+      .then(() => page.locator('.phone-thumbs li').count());
+    
+    const reactThumbnailsCount = await page.goto('http://localhost:3000/phones/nexus-s')
+      .then(() => page.locator('.phone-thumbs li').count());
+    
+    // Compare the thumbnail counts
+    expect(reactThumbnailsCount).toBe(angularThumbnailsCount);
   });
-
-  test('should display the phone details', async ({ page }) => {
-    // Check if the phone name is displayed
-    await expect(page.locator('h1')).toContainText('Nexus S');
+  
+  test('should display the first phone image as the main phone image', async ({ page }) => {
+    // Go to the React version
+    await page.goto('http://localhost:3000/phones/nexus-s');
     
-    // Check if the main phone image is displayed
-    await expect(page.locator('img.phone')).toBeVisible();
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('.phone.selected');
     
-    // Check if the thumbnails are displayed
-    await expect(page.locator('.phone-thumbs img').first()).toBeVisible();
+    // Get the source of the selected main image
+    const mainImageSrc = await page.locator('.phone.selected').getAttribute('src');
     
-    // Check if the specifications are displayed
-    await expect(page.locator('#availability')).toBeVisible();
-    await expect(page.locator('#battery')).toBeVisible();
-    await expect(page.locator('#storage')).toBeVisible();
-    await expect(page.locator('#connectivity')).toBeVisible();
-    await expect(page.locator('#android')).toBeVisible();
-    await expect(page.locator('#display')).toBeVisible();
-    await expect(page.locator('#hardware')).toBeVisible();
-    await expect(page.locator('#camera')).toBeVisible();
-    await expect(page.locator('#additional-features')).toBeVisible();
+    // Get the source of the first thumbnail
+    const firstThumbnailSrc = await page.locator('.phone-thumbs li img').first().getAttribute('src');
+    
+    // The main image should match the first thumbnail
+    expect(mainImageSrc).toContain(firstThumbnailSrc);
+    
+    // Now check the Angular version
+    await page.goto('http://localhost:8000/#!/phones/nexus-s');
+    
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('.phone.selected');
+    
+    // Get the source of the selected main image in Angular
+    const angularMainImageSrc = await page.locator('.phone.selected').getAttribute('src');
+    
+    // The two main images should point to the same image
+    expect(mainImageSrc.split('/').pop()).toBe(angularMainImageSrc.split('/').pop());
   });
-
-  test('should change the main image when a thumbnail is clicked', async ({ page }) => {
-    // Get the current main image source
-    const initialImageSrc = await page.locator('img.phone').getAttribute('src');
+  
+  test('should swap main image if a thumbnail is clicked', async ({ page }) => {
+    // Go to the React version
+    await page.goto('http://localhost:3000/phones/nexus-s');
+    
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('.phone-thumbs li');
+    
+    // Get the initial main image source
+    const initialMainImageSrc = await page.locator('.phone.selected').getAttribute('src');
     
     // Click on the second thumbnail
-    await page.locator('.phone-thumbs img').nth(1).click();
+    await page.locator('.phone-thumbs li').nth(1).click();
     
-    // Wait for the image to update
+    // Wait for the main image to update
     await page.waitForTimeout(500);
     
     // Get the new main image source
-    const newImageSrc = await page.locator('img.phone').getAttribute('src');
+    const newMainImageSrc = await page.locator('.phone.selected').getAttribute('src');
     
-    // Check if the main image has changed
-    expect(newImageSrc).not.toBe(initialImageSrc);
-  });
-
-  test('should navigate back to the phone list', async ({ page }) => {
-    // Click on the back link
-    await page.locator('a').filter({ hasText: 'Back' }).click();
+    // The main image should have changed
+    expect(newMainImageSrc).not.toBe(initialMainImageSrc);
     
-    // Check if we're back to the phone list page
-    await expect(page).toHaveURL('/');
-    await expect(page.locator('.phones')).toBeVisible();
+    // Now check if the same behavior occurs in the Angular version
+    await page.goto('http://localhost:8000/#!/phones/nexus-s');
+    
+    // Wait for the phone details to be displayed
+    await page.waitForSelector('.phone-thumbs li');
+    
+    // Get the initial main image source
+    const angularInitialMainImageSrc = await page.locator('.phone.selected').getAttribute('src');
+    
+    // Click on the second thumbnail
+    await page.locator('.phone-thumbs li').nth(1).click();
+    
+    // Wait for the main image to update
+    await page.waitForTimeout(500);
+    
+    // Get the new main image source
+    const angularNewMainImageSrc = await page.locator('.phone.selected').getAttribute('src');
+    
+    // The behavior should be the same as in the React version
+    expect(angularNewMainImageSrc).not.toBe(angularInitialMainImageSrc);
+    expect(newMainImageSrc.split('/').pop()).toBe(angularNewMainImageSrc.split('/').pop());
   });
 });

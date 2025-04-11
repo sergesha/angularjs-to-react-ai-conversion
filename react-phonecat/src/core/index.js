@@ -1,10 +1,2 @@
-// Core module index file
-// Exports all core utilities and services
-
-import checkmark from './checkmark/checkmark';
-import PhoneService from './phone/PhoneService';
-
-export {
-  checkmark,
-  PhoneService
-};
+export { default as Checkmark } from './checkmark/checkmark';
+export { default as PhoneService } from './phone/phone.service';

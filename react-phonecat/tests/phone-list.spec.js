@@ -1,59 +1,119 @@
-// @ts-check
 const { test, expect } = require('@playwright/test');
 
-test.describe('Phone List Component', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
-
-  test('should render phone list', async ({ page }) => {
-    // Check if the phone list is rendered
-    await expect(page.locator('.phones')).toBeVisible();
+test.describe('PhoneList Component', () => {
+  test('should display the correct number of phones', async ({ page }) => {
+    // Go to the Angular version
+    await page.goto('http://localhost:8000/#!/phones');
     
-    // Check if there are 20 phones in the list
-    await expect(page.locator('.phones li')).toHaveCount(20);
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
+    
+    // Get the count of phones in the Angular version
+    const angularPhoneCount = await page.locator('.phones li').count();
+    
+    // Go to the React version
+    await page.goto('http://localhost:3000/phones');
+    
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
+    
+    // Get the count of phones in the React version
+    const reactPhoneCount = await page.locator('.phones li').count();
+    
+    // Compare the counts
+    expect(reactPhoneCount).toBe(angularPhoneCount);
   });
-
+  
   test('should filter the phone list as a user types into the search box', async ({ page }) => {
-    // Type 'nexus' into search box
-    await page.fill('[data-testid="search-input"]', 'nexus');
+    // Go to the React version
+    await page.goto('http://localhost:3000/phones');
     
-    // Check if the list is filtered to 1 phone
-    await expect(page.locator('.phones li')).toHaveCount(1);
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
     
-    // Check if the name is correct
-    await expect(page.locator('.phones li .name')).toContainText('Nexus S');
+    // Get the initial count of phones
+    const initialCount = await page.locator('.phones li').count();
     
-    // Clear and type 'motorola'
-    await page.fill('[data-testid="search-input"]', '');
-    await page.fill('[data-testid="search-input"]', 'motorola');
+    // Type 'motorola' into the search box
+    await page.getByTestId('phone-list-search').fill('motorola');
     
-    // Check if the list is filtered to 8 phones
-    await expect(page.locator('.phones li')).toHaveCount(8);
+    // Wait for the filtered list
+    await page.waitForTimeout(500);
+    
+    // Get the filtered count
+    const filteredCount = await page.locator('.phones li').count();
+    
+    // Check that the list is filtered
+    expect(filteredCount).toBeLessThan(initialCount);
+    
+    // Check that all visible phones contain 'motorola' in their name or description
+    const visiblePhones = await page.locator('.phones li').all();
+    for (const phone of visiblePhones) {
+      const text = await phone.textContent();
+      expect(text.toLowerCase()).toContain('motorola');
+    }
+    
+    // Now do the same for the Angular version to compare
+    await page.goto('http://localhost:8000/#!/phones');
+    
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
+    
+    // Type 'motorola' into the search box
+    await page.locator('input[ng-model="$ctrl.query"]').fill('motorola');
+    
+    // Wait for the filtered list
+    await page.waitForTimeout(500);
+    
+    // Get the filtered count
+    const angularFilteredCount = await page.locator('.phones li').count();
+    
+    // Compare the filtered counts
+    expect(filteredCount).toBe(angularFilteredCount);
   });
-
-  test('should sort the phone list by name or age', async ({ page }) => {
-    // Check default sorting (by name)
-    let firstPhone = await page.locator('.phones li').first().locator('.name').textContent();
-    expect(firstPhone).toContain('DROID');
+  
+  test('should be able to sort the phone list by name and age', async ({ page }) => {
+    // Go to the React version
+    await page.goto('http://localhost:3000/phones');
     
-    // Change sorting to age
-    await page.selectOption('[data-testid="sort-select"]', 'age');
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
     
-    // Check if the list is now sorted by age
-    firstPhone = await page.locator('.phones li').first().locator('.name').textContent();
-    expect(firstPhone).toContain('Nexus S');
-  });
-
-  test('should navigate to the phone detail page when a phone name is clicked', async ({ page }) => {
-    // Click on the first phone
-    await page.locator('.phones li a').first().click();
+    // Select 'Alphabetical' sort
+    await page.getByTestId('phone-list-sort').selectOption('name');
     
-    // Check if the URL changed to the phone detail page
-    await expect(page).toHaveURL(/\/phones\/.+/);
+    // Get the first phone name
+    const firstPhoneNameAlpha = await page.locator('.phones li a').nth(1).textContent();
     
-    // Check if the phone detail page is loaded
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('.phone-images')).toBeVisible();
+    // Select 'Newest' sort
+    await page.getByTestId('phone-list-sort').selectOption('age');
+    
+    // Get the first phone name after sorting by newest
+    const firstPhoneNameAge = await page.locator('.phones li a').nth(1).textContent();
+    
+    // The names should be different if sorting works
+    expect(firstPhoneNameAlpha).not.toBe(firstPhoneNameAge);
+    
+    // Now do the same for the Angular version to compare
+    await page.goto('http://localhost:8000/#!/phones');
+    
+    // Wait for the phone list to be displayed
+    await page.waitForSelector('.phones li');
+    
+    // Select 'Alphabetical' sort
+    await page.locator('select[ng-model="$ctrl.orderProp"]').selectOption('name');
+    
+    // Get the first phone name
+    const angularFirstPhoneNameAlpha = await page.locator('.phones li a').nth(1).textContent();
+    
+    // Select 'Newest' sort
+    await page.locator('select[ng-model="$ctrl.orderProp"]').selectOption('age');
+    
+    // Get the first phone name after sorting by newest
+    const angularFirstPhoneNameAge = await page.locator('.phones li a').nth(1).textContent();
+    
+    // Compare the sorted results with Angular version
+    expect(firstPhoneNameAlpha).toBe(angularFirstPhoneNameAlpha);
+    expect(firstPhoneNameAge).toBe(angularFirstPhoneNameAge);
   });
 });

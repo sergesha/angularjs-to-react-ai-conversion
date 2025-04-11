@@ -1,90 +1,88 @@
-# Playwright Testing for PhoneCat Conversion
+# Playwright Testing for PhoneCat
 
-This document outlines the Playwright testing approach used to validate the conversion from AngularJS to React.
+This document describes the testing approach used to compare the original AngularJS PhoneCat application with the React conversion.
 
 ## Overview
 
-We use Playwright to:
-- Test functionality of the React application
-- Compare functionality between the AngularJS and React versions
-- Perform visual regression testing
+We use Playwright to run automated tests that compare the functionality and appearance of both applications. This helps ensure that the React conversion accurately replicates the original AngularJS application.
 
-## Test Structure
+## Test Categories
 
-The tests are organized into three main files:
+1. **Phone List Tests** - Verify the phone list component works correctly
+2. **Phone Detail Tests** - Verify the phone detail component works correctly
+3. **Visual Comparison Tests** - Compare screenshots to ensure visual similarity
+4. **Functionality Comparison Tests** - Ensure functionality behaves identically
 
-1. `phone-list.spec.js` - Tests for the phone list component
-2. `phone-detail.spec.js` - Tests for the phone detail component
-3. `comparison.spec.js` - Comparison tests between AngularJS and React versions
+## Running Tests
 
-## Running the Tests
+To run the tests, you need to have both the AngularJS and React applications set up. The tests are configured to automatically start both applications.
 
 ### Prerequisites
 
-- Both the AngularJS and React applications need to be set up
-- Node.js and npm installed
+1. Install dependencies in both projects:
+   ```bash
+   # In angular-phonecat directory
+   npm install
 
-### Installation
+   # In react-phonecat directory
+   npm install
+   ```
 
-Playwright is installed as a dev dependency:
+2. Ensure both applications have the necessary data files:
+   - AngularJS: `/app/phones/phones.json` and individual phone JSON files
+   - React: `/public/phones/` directory with the same JSON files
 
-```bash
-npm install -D @playwright/test
-```
-
-### Running Tests
-
-Run all tests:
-
-```bash
-npx playwright test
-```
-
-Run a specific test file:
+### Running All Tests
 
 ```bash
-npx playwright test tests/phone-list.spec.js
+npm run test:e2e
 ```
 
-View test report:
+### Running Specific Test Suites
 
 ```bash
-npx playwright show-report
+# Run only the functionality comparison tests
+npm run test:comparison
+
+# Run only the visual comparison tests
+npm run test:visual
 ```
 
-## Test Configuration
+### Running Tests with UI Mode
 
-The `playwright.config.js` file configures the testing environment:
+```bash
+npm run test:ui
+```
 
-- Sets up two web servers (React on port 3000, Angular on port 8000)
-- Configures three test projects:
-  - chromium - General Chromium browser tests
-  - react-app - Tests specific to the React application
-  - angular-app - Tests specific to the AngularJS application
-- Sets timeouts and retries
+### Viewing Test Reports
 
-## Visual Comparison
+```bash
+npm run test:report
+```
 
-The tests capture screenshots of both applications for visual comparison. Screenshots are saved in the `screenshots` directory with naming conventions:
+## Test Results
 
-- `angular-*.png` - Screenshots of the AngularJS application
-- `react-*.png` - Screenshots of the React application
+Test results are stored in the `test-results` directory. This includes:
+- Screenshots of both applications
+- Trace files for debugging
+- HTML report with test results
 
-## Validation Approach
+## Known Differences
 
-Our tests verify that:
+Some minor differences between the AngularJS and React versions are expected:
 
-1. The React application renders the same number of phones
-2. Search functionality works identically
-3. Sorting functionality works identically
-4. Detail pages show the same information
-5. Thumbnail click behavior works the same
-6. UI elements appear visually similar
+1. **CSS Rendering** - Different frameworks may render CSS slightly differently
+2. **Animation Timing** - Animations may have slightly different timing
+3. **Font Rendering** - Font rendering might vary between applications
+4. **Path Handling** - Image paths might be different between applications
 
-## Reviewing Results
+These differences are considered acceptable as long as the core functionality and user experience are the same.
 
-After running the tests, check:
+## Addressing Differences
 
-1. Test pass/fail results
-2. Visual comparison screenshots
-3. Error messages for any failing tests
+If significant differences are detected:
+
+1. Review the test report and screenshots
+2. Examine the specific areas where differences occur
+3. Adjust the React implementation to more closely match the AngularJS version
+4. Re-run the tests to verify improvements

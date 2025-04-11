@@ -1,117 +1,83 @@
-/* Phone list styles matching the original AngularJS app */
-
-/* View: Phone list */
+/* Phone list CSS styles */
 .phones {
   list-style: none;
   padding: 0;
-  margin: 0;
+}
+
+.thumb {
+  float: left;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  height: 100px;
+  width: 100px;
 }
 
 .phones li {
   clear: both;
   height: 115px;
   padding-top: 15px;
-  border-bottom: 1px solid #eee;
 }
 
-.thumb {
+/** Detail View **/
+img.phone {
   float: left;
+  margin-right: 3em;
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 2em;
+  height: 400px;
+  width: 400px;
+  display: none;
+}
+
+img.phone:first-child {
+  display: block;
+}
+
+ul.phone-thumbs {
+  margin: 0;
+  list-style: none;
+}
+
+ul.phone-thumbs li {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 1em;
+  background-color: white;
+}
+
+ul.phone-thumbs img {
   height: 100px;
-  margin: -0.5em 1em 1.5em 0;
-  padding-bottom: 1em;
   width: 100px;
+  padding: 1em;
 }
 
-.thumb img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+ul.phone-thumbs img:hover {
+  cursor: pointer;
 }
 
-.phone-name {
-  color: #337ab7;
-  text-decoration: none;
+ul.specs {
+  clear: both;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.specs > li {
+  display: inline-block;
+  width: 200px;
+  vertical-align: top;
+}
+
+ul.specs > li > span {
   font-weight: bold;
-  font-size: 1.1em;
-}
-
-.phone-name:hover {
-  text-decoration: underline;
-}
-
-.phone-snippet {
-  margin-top: 5px;
-  color: #555;
-}
-
-/* Search and sort controls at the top of the page */
-.search-controls {
-  display: flex;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.search-box, .sort-box {
-  margin-right: 30px;
-}
-
-.search-box p, .sort-box p {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
-}
-
-.form-control {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 200px;
-}
-
-/* Loading and Error states */
-.loading, .error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
   font-size: 1.2em;
 }
 
-.loading {
-  color: #555;
+ul.specs dt {
+  font-weight: bold;
 }
 
-.error {
-  color: #d9534f;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .search-controls {
-    flex-direction: column;
-  }
-
-  .search-box, .sort-box {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .search-box p, .sort-box p {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .form-control {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 5px;
-  }
-
-  .phones li {
-    height: auto;
-    min-height: 120px;
-  }
+h1 {
+  border-bottom: 1px solid gray;
 }

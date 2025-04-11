@@ -1,153 +1,46 @@
-/* Global styles for the entire application */
-
+/* Global app styling */
 body {
-  padding: 20px;
   padding-top: 20px;
-  padding-bottom: 40px;
 }
 
-.App {
-  padding-bottom: 40px;
+.app {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1em;
 }
 
-.App-header {
-  background-color: #f8f8f8;
-  padding: 15px 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #e7e7e7;
-}
-
-.App-header h1 {
-  margin: 0;
-  color: #333;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: left;
-  border-bottom: none;
-}
-
-/* View container and frame - matching original AngularJS app */
 .view-container {
-  position: relative;
-  padding: 0 15px;
+  width: 100%;
 }
 
 .view-frame {
   margin-top: 20px;
 }
 
-/* Containers and Grid System */
-.container {
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 0 15px;
+/* Animation classes */
+.view-frame.ng-enter, .view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.container-fluid {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+.view-frame.ng-enter {
+  animation: 0.5s fade-in;
+  z-index: 100;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+.view-frame.ng-leave {
+  animation: 0.5s fade-out;
+  z-index: 99;
 }
 
-.col-md-2, .col-md-10, .col-md-12 {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Grid system responsive breakpoints */
-@media (min-width: 768px) {
-  .col-md-2 {
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%;
-  }
-
-  .col-md-10 {
-    flex: 0 0 83.333333%;
-    max-width: 83.333333%;
-  }
-
-  .col-md-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
-}
-
-/* Spacing utility classes */
-.mt-3 {
-  margin-top: 1rem;
-}
-
-/* Animation classes for transitions */
-.phone-list-item-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.phone-list-item-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.phone-list-item-exit {
-  opacity: 1;
-}
-
-.phone-list-item-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Error messages */
-.error-container {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

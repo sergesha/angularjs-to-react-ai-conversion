@@ -1,50 +1,58 @@
-/* Animation classes equivalent to the AngularJS ngAnimate */
-
-/* Animation for element appearing */
-.animate-enter {
-  animation: fadeIn 0.3s;
+/* Animation styles from original AngularJS app */
+.phone-list-item.ng-enter,
+.phone-list-item.ng-leave,
+.phone-list-item.ng-move {
+  transition: 0.5s linear all;
 }
 
-/* Animation for element leaving */
-.animate-leave {
-  animation: fadeOut 0.3s;
+.phone-list-item.ng-enter,
+.phone-list-item.ng-move {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
-/* Animation keyframes */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.phone-list-item.ng-enter.ng-enter-active,
+.phone-list-item.ng-move.ng-move-active {
+  height: 120px;
+  opacity: 1;
 }
 
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+.phone-list-item.ng-leave {
+  opacity: 1;
+  overflow: hidden;
 }
 
-/* Phone list item animations */
-.phone-list-item {
-  transition: all 0.3s ease-in-out;
+.phone-list-item.ng-leave.ng-leave-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
-.phone-list-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* React animation equivalents */
+.phone-list-item-enter {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
-/* Phone thumb animations */
-.phone-thumbs li {
-  transition: transform 0.2s ease;
+.phone-list-item-enter-active {
+  height: 120px;
+  opacity: 1;
+  transition: 0.5s linear all;
 }
 
-.phone-thumbs li:hover {
-  transform: scale(1.05);
+.phone-list-item-exit {
+  height: 120px;
+  opacity: 1;
+  overflow: hidden;
 }
 
-/* Animation for route transitions */
-.view-frame {
-  position: relative;
-}
-
-.view-frame > div {
-  animation: fadeIn 0.3s;
+.phone-list-item-exit-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  transition: 0.5s linear all;
 }
