@@ -13,6 +13,7 @@ The complete library is divided into several specialized sections to make it mor
 5. [Routing Transformation Prompts](CONVERSION-PROMPTS-ROUTING.md) - Conversion of AngularJS routing to React Router
 6. [Animation Transformation Prompts](CONVERSION-PROMPTS-ANIMATION.md) - Conversion of AngularJS animations to React animations
 7. [Project Structure Transformation Prompts](CONVERSION-PROMPTS-PROJECT-STRUCTURE.md) - Conversion of AngularJS project structure to React
+8. [Testing Prompts](CONVERSION-PROMPTS-TESTING.md) - Prompts for setting up automated testing for both AngularJS and React versions, including end-to-end testing with Playwright
 
 ## How to Use This Library
 
