@@ -44,6 +44,12 @@ This document serves as an index for our collection of prompts designed to assis
    - CSS transitions
    - Animation libraries
 
+9. [Testing Implementation](CONVERSION-PROMPTS-TESTING.md)
+   - Setting up Playwright for testing converted applications
+   - Creating comparison tests between AngularJS and React versions
+   - Visual regression testing
+   - Automated validation of conversion completeness
+
 ## How to Use This Library
 
 1. Identify the specific aspect of your AngularJS application you're converting
