@@ -1,0 +1,32 @@
+.phones {
+  list-style: none;
+}
+
+.phones-list-item {
+  height: 100px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.thumbnail {
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.phone-list-item .thumb {
+  float: left;
+  width: 100px;
+  margin-right: 15px;
+}
+
+.phone-list-item img {
+  height: 100px;
+  max-width: 100px;
+}
