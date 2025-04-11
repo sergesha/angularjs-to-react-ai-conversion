@@ -69,7 +69,7 @@ const PhoneList = () => {
     <div className="container-fluid">
       <div className="row">
         {/* Top controls for search and sort */}
-        <div className="search-controls col-md-12">
+        <div className="search-controls col-md-12 d-flex justify-content-between mb-4">
           <div className="search-box">
             <p>
               Search:
@@ -97,31 +97,33 @@ const PhoneList = () => {
 
         {/* Phone list */}
         <div className="col-md-12">
-          <ul className="phones">
+          <div className="row">
             {sortedPhones.length > 0 ? (
               sortedPhones.map((phone) => (
-                <li key={phone.id} className="thumbnail phone-list-item">
-                  <Link to={`/phones/${phone.id}`} className="thumb">
-                    <img
-                      src={PhoneService.getImageUrl(phone.imageUrl)}
-                      alt={phone.name}
-                      onError={(e) => {
-                        console.log(`Error loading image: ${e.target.src}`);
-                        e.target.onerror = null; // Prevent infinite loop
-                        e.target.src = '/assets/img/phones/placeholder.svg';
-                      }}
-                    />
-                  </Link>
-                  <Link to={`/phones/${phone.id}`} className="phone-name">{phone.name}</Link>
-                  <p className="phone-snippet">{phone.snippet}</p>
-                </li>
+                <div key={phone.id} className="col-md-4 col-sm-6 mb-4">
+                  <div className="thumbnail phone-list-item h-100">
+                    <Link to={`/phones/${phone.id}`} className="thumb">
+                      <img
+                        src={PhoneService.getImageUrl(phone.imageUrl)}
+                        alt={phone.name}
+                        onError={(e) => {
+                          console.log(`Error loading image: ${e.target.src}`);
+                          e.target.onerror = null; // Prevent infinite loop
+                          e.target.src = '/assets/img/phones/placeholder.svg';
+                        }}
+                      />
+                    </Link>
+                    <Link to={`/phones/${phone.id}`} className="phone-name">{phone.name}</Link>
+                    <p className="phone-snippet">{phone.snippet}</p>
+                  </div>
+                </div>
               ))
             ) : (
-              <div>
+              <div className="col-12">
                 <p>No phones found</p>
               </div>
             )}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
