@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 code {
@@ -12,7 +14,72 @@ code {
     monospace;
 }
 
-/* From angular-phonecat app.css */
-body {
-  padding-top: 20px;
+/* Animation styles */
+.animate-repeat {
+  transition: all linear 0.5s;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition: all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  max-height: 40px;
+}
+
+/* Replicating AngularJS class styles */
+.ng-hide {
+  display: none !important;
+}
+
+/* Container styles */
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-2, .col-md-10 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-md-2 {
+  width: 16.66666667%;
+}
+
+.col-md-10 {
+  width: 83.33333333%;
+}
+
+@media (max-width: 768px) {
+  .col-md-2, .col-md-10 {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+  }
 }

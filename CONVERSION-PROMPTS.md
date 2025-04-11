@@ -26,7 +26,7 @@ Ensure that you:
 
 AngularJS component:
 ```
-[PASTE ANG%lIARJS COMPONENT CODE HERE]
+[PASTE ANGULARJS COMPONENT CODE HERE]
 ```
 ```
 
@@ -77,4 +77,108 @@ const PhoneList = () => {
 };
 
 export default PhoneList;
+```
+
+### Component with Lifecycle Methods
+
+**Prompt:**
+```
+Convert this AngularJS component with lifecycle hooks to a React functional component.
+Pay special attention to:
+1. Converting $onInit, $onChanges, $onDestroy to appropriate React hooks
+2. Properly handling component inputs/bindings
+3. Managing external resources and subscriptions
+
+AngularJS component:
+```
+[PASTE ANGULARJS COMPONENT CODE HERE]
+```
+```
+
+**Example - AngularJS Component:**
+```javascript
+angular.module('myApp').component('dataLoader', {
+  bindings: {
+    resourceId: '<',
+    onDataLoaded: '&'
+  },
+  controller: ['DataService', '$timeout', 
+    function(DataService, $timeout) {
+      var ctrl = this;
+      var timeoutPromise;
+      
+      this.$onInit = function() {
+        console.log('Component initialized');
+        this.loadData();
+      };
+      
+      this.$onChanges = function(changesObj) {
+        if (changesObj.resourceId) {
+          this.loadData();
+        }
+      };
+      
+      this.loadData = function() {
+        DataService.getData(this.resourceId).then(function(data) {
+          ctrl.data = data;
+          ctrl.onDataLoaded({data: data});
+        });
+      };
+      
+      this.$onDestroy = function() {
+        if (timeoutPromise) {
+          $timeout.cancel(timeoutPromise);
+        }
+        console.log('Component destroyed');
+      };
+    }
+  ]
+});
+```
+
+**Example - React Component:**
+```jsx
+import React, { useState, useEffect, useRef } from 'react';
+import { useDataService } from '../services/DataService';
+
+const DataLoader = ({ resourceId, onDataLoaded }) => {
+  const [data, setData] = useState(null);
+  const dataService = useDataService();
+  const timeoutRef = useRef(null);
+  
+  // Equivalent to $onInit and $onChanges
+  useEffect(() => {
+    console.log('Component initialized or resourceId changed');
+    
+    const loadData = async () => {
+      const result = await dataService.getData(resourceId);
+      setData(result);
+      if (onDataLoaded) {
+        onDataLoaded(result);
+      }
+    };
+    
+    loadData();
+    
+    // Equivalent to $onDestroy
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      console.log('Component destroyed');
+    };
+  }, [resourceId, dataService, onDataLoaded]);
+  
+  return (
+    <div className="data-loader">
+      {data ? (
+        <div className="data-content">{/* Render data */}</div>
+      ) : (
+        <div className="loading">Loading...</div>
+      )}
+    </div>
+  );
+};
+
+export default DataLoader;
 ```
