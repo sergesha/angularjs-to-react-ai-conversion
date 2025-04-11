@@ -1,11 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import PhoneList from './phone-list/PhoneList';
-import PhoneDetail from './phone-detail/PhoneDetail';
+import PhoneList from './components/PhoneList/PhoneList';
+import PhoneDetail from './components/PhoneDetail/PhoneDetail';
 import './App.css';
-import './app.animations.css';
+import './utils/animations/animations.css';
 
+/**
+ * Main App component - sets up routing for the application
+ * This replaces the AngularJS ngRoute module configuration
+ */
 function App() {
   return (
     <Router>

@@ -55,7 +55,7 @@ const PhoneList = () => {
             <input 
               value={query}
               onChange={handleQueryChange}
-              data-testid="phone-list-search"
+              data-testid="search-input"
               className="form-control"
             />
           </p>
@@ -65,7 +65,7 @@ const PhoneList = () => {
             <select 
               value={orderProp}
               onChange={handleOrderPropChange}
-              data-testid="phone-list-sort"
+              data-testid="sort-select"
               className="form-control"
             >
               <option value="name">Alphabetical</option>
@@ -85,7 +85,7 @@ const PhoneList = () => {
                     alt={phone.name}
                   />
                 </Link>
-                <Link to={`/phones/${phone.id}`}>{phone.name}</Link>
+                <Link to={`/phones/${phone.id}`} className="name">{phone.name}</Link>
                 <p>{phone.snippet}</p>
               </li>
             ))}

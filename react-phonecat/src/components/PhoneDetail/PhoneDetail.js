@@ -4,6 +4,10 @@ import PhoneService from '../../services/PhoneService';
 import checkmark from '../../utils/checkmark';
 import './PhoneDetail.css';
 
+/**
+ * PhoneDetail component - displays detailed information about a specific phone
+ * This is a functional component that replaces the AngularJS controller and template
+ */
 const PhoneDetail = () => {
   const { phoneId } = useParams();
   const [phone, setPhone] = useState(null);
@@ -11,12 +15,13 @@ const PhoneDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch phone details on component mount or when phoneId changes
   useEffect(() => {
     const fetchPhone = async () => {
       setLoading(true);
       try {
         console.log(`Fetching phone with ID: ${phoneId}`);
-        const data = await PhoneService.getPhone(phoneId);
+        const data = await PhoneService.get(phoneId);
         console.log(`Phone ${phoneId} data received:`, data);
         
         if (data) {
@@ -39,19 +44,20 @@ const PhoneDetail = () => {
     fetchPhone();
   }, [phoneId]);
 
+  // Function to set the main image - replacing Angular's ng-click behavior
   const setImage = (imageUrl) => {
     setMainImageUrl(imageUrl);
   };
 
   if (loading) {
-    return <div className="loading">Loading phone details...</div>;
+    return <div className="loading" data-testid="loading-indicator">Loading phone details...</div>;
   }
 
   if (error) {
     return (
       <div>
-        <div className="error">{error}</div>
-        <Link to="/phones" className="btn btn-primary mt-3">Back to Phone List</Link>
+        <div className="error" data-testid="error-message">{error}</div>
+        <Link to="/phones" className="btn btn-primary mt-3" data-testid="back-button">Back to Phone List</Link>
       </div>
     );
   }
@@ -59,170 +65,186 @@ const PhoneDetail = () => {
   if (!phone) {
     return (
       <div>
-        <div className="error">Phone not found</div>
-        <Link to="/phones" className="btn btn-primary mt-3">Back to Phone List</Link>
+        <div className="error" data-testid="not-found">Phone not found</div>
+        <Link to="/phones" className="btn btn-primary mt-3" data-testid="back-button">Back to Phone List</Link>
       </div>
     );
   }
 
   return (
-    <div className="phone-detail">
-      <div className="phone-images">
-        {phone.images && phone.images.map((img, index) => (
-          <img 
-            key={index}
-            src={PhoneService.getImageUrl(img)} 
-            alt={phone.name} 
-            className={`phone ${img === mainImageUrl ? 'selected' : ''}`}
-            onError={(e) => {
-              console.log(`Error loading image: ${e.target.src}`);
-              e.target.onerror = null; // Prevent infinite loop
-              e.target.src = '/assets/img/phones/placeholder.svg';
-            }}
-          />
-        ))}
-      </div>
-
-      <h1>{phone.name}</h1>
-
-      <p>{phone.description}</p>
-
-      <ul className="phone-thumbs">
-        {phone.images && phone.images.map((img, index) => (
-          <li key={index}>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-12">
+          {/* Phone header */}
+          <h1 data-testid="phone-name">{phone.name}</h1>
+          
+          {/* Main phone image container */}
+          <div className="phone-images">
             <img 
-              src={PhoneService.getImageUrl(img)} 
-              alt={`${phone.name} thumbnail ${index}`}
-              onClick={() => setImage(img)}
+              src={PhoneService.getImageUrl(mainImageUrl)} 
+              alt={phone.name} 
+              className="phone selected"
+              data-testid="main-image"
               onError={(e) => {
-                console.log(`Error loading thumbnail: ${e.target.src}`);
+                console.log(`Error loading image: ${e.target.src}`);
                 e.target.onerror = null; // Prevent infinite loop
                 e.target.src = '/assets/img/phones/placeholder.svg';
               }}
             />
-          </li>
-        ))}
-      </ul>
-
-      <ul className="specs">
-        <li>
-          <span>Availability and Networks</span>
-          <dl>
-            <dt>Availability</dt>
-            {phone.availability && phone.availability.map((availability, index) => (
-              <dd key={index}>{availability}</dd>
+          </div>
+          
+          {/* Phone description */}
+          <p data-testid="phone-description">{phone.description}</p>
+          
+          {/* Thumbnails */}
+          <ul className="phone-thumbs">
+            {phone.images && phone.images.map((img, index) => (
+              <li key={index}>
+                <img 
+                  src={PhoneService.getImageUrl(img)} 
+                  onClick={() => setImage(img)}
+                  alt={`${phone.name} - thumbnail ${index}`}
+                  data-testid={`thumbnail-${index}`}
+                  onError={(e) => {
+                    console.log(`Error loading thumbnail: ${e.target.src}`);
+                    e.target.onerror = null; // Prevent infinite loop
+                    e.target.src = '/assets/img/phones/placeholder.svg';
+                  }}
+                />
+              </li>
             ))}
-          </dl>
-        </li>
-        <li>
-          <span>Battery</span>
-          <dl>
-            <dt>Type</dt>
-            <dd>{phone.battery && phone.battery.type}</dd>
-            <dt>Talk Time</dt>
-            <dd>{phone.battery && phone.battery.talkTime}</dd>
-            <dt>Standby time (max)</dt>
-            <dd>{phone.battery && phone.battery.standbyTime}</dd>
-          </dl>
-        </li>
-        <li>
-          <span>Storage and Memory</span>
-          <dl>
-            <dt>RAM</dt>
-            <dd>{phone.storage && phone.storage.ram}</dd>
-            <dt>Internal Storage</dt>
-            <dd>{phone.storage && phone.storage.flash}</dd>
-          </dl>
-        </li>
-        <li>
-          <span>Connectivity</span>
-          <dl>
-            <dt>Network Support</dt>
-            <dd>{phone.connectivity && phone.connectivity.cell}</dd>
-            <dt>WiFi</dt>
-            <dd>{phone.connectivity && phone.connectivity.wifi}</dd>
-            <dt>Bluetooth</dt>
-            <dd>{phone.connectivity && phone.connectivity.bluetooth}</dd>
-            <dt>Infrared</dt>
-            <dd dangerouslySetInnerHTML={{ 
-              __html: checkmark(phone.connectivity && phone.connectivity.infrared) 
-            }} />
-            <dt>GPS</dt>
-            <dd dangerouslySetInnerHTML={{ 
-              __html: checkmark(phone.connectivity && phone.connectivity.gps) 
-            }} />
-          </dl>
-        </li>
-        <li>
-          <span>Android</span>
-          <dl>
-            <dt>OS Version</dt>
-            <dd>{phone.android && phone.android.os}</dd>
-            <dt>UI</dt>
-            <dd>{phone.android && phone.android.ui}</dd>
-          </dl>
-        </li>
-        <li>
-          <span>Size and Weight</span>
-          <dl>
-            <dt>Dimensions</dt>
-            {phone.sizeAndWeight && phone.sizeAndWeight.dimensions && 
-             phone.sizeAndWeight.dimensions.map((dim, index) => (
-              <dd key={index}>{dim}</dd>
-            ))}
-            <dt>Weight</dt>
-            <dd>{phone.sizeAndWeight && phone.sizeAndWeight.weight}</dd>
-          </dl>
-        </li>
-        <li>
-          <span>Display</span>
-          <dl>
-            <dt>Screen size</dt>
-            <dd>{phone.display && phone.display.screenSize}</dd>
-            <dt>Screen resolution</dt>
-            <dd>{phone.display && phone.display.screenResolution}</dd>
-            <dt>Touch screen</dt>
-            <dd dangerouslySetInnerHTML={{ 
-              __html: checkmark(phone.display && phone.display.touchScreen) 
-            }} />
-          </dl>
-        </li>
-        <li>
-          <span>Hardware</span>
-          <dl>
-            <dt>CPU</dt>
-            <dd>{phone.hardware && phone.hardware.cpu}</dd>
-            <dt>USB</dt>
-            <dd>{phone.hardware && phone.hardware.usb}</dd>
-            <dt>Audio / headphone jack</dt>
-            <dd>{phone.hardware && phone.hardware.audioJack}</dd>
-            <dt>FM Radio</dt>
-            <dd dangerouslySetInnerHTML={{ 
-              __html: checkmark(phone.hardware && phone.hardware.fmRadio) 
-            }} />
-            <dt>Accelerometer</dt>
-            <dd dangerouslySetInnerHTML={{ 
-              __html: checkmark(phone.hardware && phone.hardware.accelerometer) 
-            }} />
-          </dl>
-        </li>
-        <li>
-          <span>Camera</span>
-          <dl>
-            <dt>Primary</dt>
-            <dd>{phone.camera && phone.camera.primary}</dd>
-            <dt>Features</dt>
-            <dd>{phone.camera && phone.camera.features && phone.camera.features.join(', ')}</dd>
-          </dl>
-        </li>
-        <li>
-          <span>Additional Features</span>
-          <dd>{phone.additionalFeatures}</dd>
-        </li>
-      </ul>
-      
-      <div style={{ clear: 'both', paddingTop: '1em' }}>
-        <Link to="/phones" className="btn btn-primary">Back to Phone List</Link>
+          </ul>
+          
+          {/* Specs list - matching Angular structure */}
+          <ul className="specs" data-testid="specs-list">
+            <li>
+              <span>Availability and Networks</span>
+              <dl>
+                <dt>Availability</dt>
+                {phone.availability && phone.availability.map((availability, index) => (
+                  <dd key={index}>{availability}</dd>
+                ))}
+              </dl>
+            </li>
+            
+            <li>
+              <span>Battery</span>
+              <dl>
+                <dt>Type</dt>
+                <dd>{phone.battery && phone.battery.type}</dd>
+                <dt>Talk Time</dt>
+                <dd>{phone.battery && phone.battery.talkTime}</dd>
+                <dt>Standby time (max)</dt>
+                <dd>{phone.battery && phone.battery.standbyTime}</dd>
+              </dl>
+            </li>
+            
+            <li>
+              <span>Storage and Memory</span>
+              <dl>
+                <dt>RAM</dt>
+                <dd>{phone.storage && phone.storage.ram}</dd>
+                <dt>Internal Storage</dt>
+                <dd>{phone.storage && phone.storage.flash}</dd>
+              </dl>
+            </li>
+            
+            <li>
+              <span>Connectivity</span>
+              <dl>
+                <dt>Network Support</dt>
+                <dd>{phone.connectivity && phone.connectivity.cell}</dd>
+                <dt>WiFi</dt>
+                <dd>{phone.connectivity && phone.connectivity.wifi}</dd>
+                <dt>Bluetooth</dt>
+                <dd>{phone.connectivity && phone.connectivity.bluetooth}</dd>
+                <dt>Infrared</dt>
+                <dd dangerouslySetInnerHTML={{ 
+                  __html: checkmark(phone.connectivity && phone.connectivity.infrared) 
+                }} />
+                <dt>GPS</dt>
+                <dd dangerouslySetInnerHTML={{ 
+                  __html: checkmark(phone.connectivity && phone.connectivity.gps) 
+                }} />
+              </dl>
+            </li>
+            
+            <li>
+              <span>Android</span>
+              <dl>
+                <dt>OS Version</dt>
+                <dd>{phone.android && phone.android.os}</dd>
+                <dt>UI</dt>
+                <dd>{phone.android && phone.android.ui}</dd>
+              </dl>
+            </li>
+            
+            <li>
+              <span>Size and Weight</span>
+              <dl>
+                <dt>Dimensions</dt>
+                {phone.sizeAndWeight && phone.sizeAndWeight.dimensions && 
+                 phone.sizeAndWeight.dimensions.map((dim, index) => (
+                  <dd key={index}>{dim}</dd>
+                ))}
+                <dt>Weight</dt>
+                <dd>{phone.sizeAndWeight && phone.sizeAndWeight.weight}</dd>
+              </dl>
+            </li>
+            
+            <li>
+              <span>Display</span>
+              <dl>
+                <dt>Screen size</dt>
+                <dd>{phone.display && phone.display.screenSize}</dd>
+                <dt>Screen resolution</dt>
+                <dd>{phone.display && phone.display.screenResolution}</dd>
+                <dt>Touch screen</dt>
+                <dd dangerouslySetInnerHTML={{ 
+                  __html: checkmark(phone.display && phone.display.touchScreen) 
+                }} />
+              </dl>
+            </li>
+            
+            <li>
+              <span>Hardware</span>
+              <dl>
+                <dt>CPU</dt>
+                <dd>{phone.hardware && phone.hardware.cpu}</dd>
+                <dt>USB</dt>
+                <dd>{phone.hardware && phone.hardware.usb}</dd>
+                <dt>Audio / headphone jack</dt>
+                <dd>{phone.hardware && phone.hardware.audioJack}</dd>
+                <dt>FM Radio</dt>
+                <dd dangerouslySetInnerHTML={{ 
+                  __html: checkmark(phone.hardware && phone.hardware.fmRadio) 
+                }} />
+                <dt>Accelerometer</dt>
+                <dd dangerouslySetInnerHTML={{ 
+                  __html: checkmark(phone.hardware && phone.hardware.accelerometer) 
+                }} />
+              </dl>
+            </li>
+            
+            <li>
+              <span>Camera</span>
+              <dl>
+                <dt>Primary</dt>
+                <dd>{phone.camera && phone.camera.primary}</dd>
+                <dt>Features</dt>
+                <dd>{phone.camera && phone.camera.features && phone.camera.features.join(', ')}</dd>
+              </dl>
+            </li>
+            
+            <li>
+              <span>Additional Features</span>
+              <dd>{phone.additionalFeatures}</dd>
+            </li>
+          </ul>
+          
+          {/* Back button */}
+          <Link to="/phones" className="btn btn-default" data-testid="back-button">Back</Link>
+        </div>
       </div>
     </div>
   );

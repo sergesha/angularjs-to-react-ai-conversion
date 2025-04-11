@@ -1,109 +1,99 @@
 # React PhoneCat
 
-This project is a React implementation of the [AngularJS PhoneCat Tutorial App](https://github.com/angular/angular-phonecat).
-
-## Overview
-
-The application displays a list of Android phones and allows users to:
-- Browse through a catalog of phones
-- Filter and sort the phone list
-- View detailed specifications for each phone
-- Browse through phone images
+A React implementation of the AngularJS PhoneCat application, demonstrating how to convert AngularJS applications to React.
 
 ## Project Structure
 
-The project follows a similar structure to the original AngularJS application:
+This project is organized into the following directories:
 
 ```
-src/
-├── core/              # Core modules and services
-│   ├── checkmark/     # Checkmark utility (similar to AngularJS filter)
-│   └── phone/         # Phone service
-├── phone-list/        # Phone list component
-├── phone-detail/      # Phone detail component
-├── phones/            # Phone data
-├── App.js             # Main application component
-└── index.js           # Application entry point
+react-phonecat/
+├── src/                      # Application source code
+│   ├── core/                 # Core utilities and services
+│   ├── phone-list/           # Phone list page components
+│   ├── phone-detail/         # Phone detail page components
+│   └── ...                   # Other application code
+├── public/                   # Static assets
+├── docs/                     # Project documentation
+├── prompt-library/           # AngularJS to React conversion prompts
+├── tests/                    # Test files
+│   ├── scripts/              # Test scripts
+│   ├── results/              # Test results (screenshots, etc.)
+│   └── playwright.config.js  # Playwright configuration
+└── package.json              # Project dependencies and scripts
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js and npm
+- Node.js 16+
+- npm or yarn
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone <repository-url>
+1. Clone this repository
+   ```bash
+   git clone https://github.com/yourusername/react-phonecat.git
+   cd react-phonecat
+   ```
 
-# Navigate to the project directory
-cd react-phonecat
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-# Install dependencies
-npm install
-```
+3. Start the development server
+   ```bash
+   npm start
+   ```
 
-### Running the Application
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-# Start the development server
-npm start
-```
+## Running Tests
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
-
-### Building for Production
-
-```bash
-# Build the application
-npm run build
-```
-
-## Testing
-
-### Running Tests
+### Unit Tests
 
 ```bash
-# Run unit tests
 npm test
+```
 
-# Run end-to-end tests
+### End-to-End Tests
+
+```bash
+# Install Playwright browsers (first time only)
+npx playwright install
+
+# Run all tests
 npm run test:e2e
 
-# Run comparison tests between Angular and React versions
+# Run comparison tests only
 npm run test:comparison
 
-# Run visual comparison tests
-npm run test:visual
+# Run in UI mode
+npm run test:ui
+
+# View test report
+npm run test:report
 ```
-
-## Comparison with AngularJS Version
-
-This React implementation aims to maintain feature parity with the original AngularJS application:
-
-1. **Components** - Converted AngularJS components to React components
-2. **Services** - Replaced AngularJS services with React hooks and context
-3. **Routing** - Implemented React Router instead of ngRoute
-4. **Filters** - Converted AngularJS filters to JavaScript utility functions
-5. **Templates** - Replaced AngularJS templates with JSX
-6. **Styling** - Maintained the same visual appearance
 
 ## Documentation
 
-Additional documentation can be found in the following files:
+For more detailed information, please see:
 
-- [Conversion Log](./CONVERSION-LOG.md) - Details about the conversion process
-- [Playwright Testing](./PLAYWRIGHT-TESTING.md) - Information about the testing approach
+- [Conversion Report](docs/CONVERSION-REPORT.md) - Details on the conversion process
+- [Testing Guide](docs/TESTING-GUIDE.md) - Guide for running and analyzing tests
+- [Prompt Library](prompt-library/PROMPT-LIBRARY-INDEX.md) - Index of conversion prompts
 
-## Technologies Used
+## Contributing
 
-- [React](https://reactjs.org/)
-- [React Router](https://reactrouter.com/)
-- [Bootstrap](https://getbootstrap.com/)
-- [Playwright](https://playwright.dev/) (for testing)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- The original [AngularJS PhoneCat Tutorial](https://github.com/angular/angular-phonecat)
+- All contributors who helped with the conversion process

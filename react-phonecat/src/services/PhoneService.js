@@ -1,10 +1,16 @@
-// PhoneService.js - This service replaces the $http functionality from AngularJS
+/**
+ * PhoneService - a React service that replaces the AngularJS $http service functionality
+ * This consolidated service combines all phone-related data access operations
+ */
+
 const PhoneService = {
-  // Get all phones
-  getPhones: async () => {
+  /**
+   * Get all phones
+   * @returns {Promise<Array>} List of phones
+   */
+  getAll: async () => {
     try {
       console.log('Fetching phones from API...');
-      // Direct path to the JSON file in the public folder
       const response = await fetch('/assets/phones/phones.json');
       
       console.log('Response status:', response.status);
@@ -79,8 +85,19 @@ const PhoneService = {
     }
   },
 
-  // Get a specific phone by ID
-  getPhone: async (phoneId) => {
+  /**
+   * Alias for getAll for backwards compatibility
+   */
+  getPhones: async () => {
+    return PhoneService.getAll();
+  },
+
+  /**
+   * Get a specific phone by ID
+   * @param {string} phoneId - The ID of the phone to retrieve
+   * @returns {Promise<Object>} Phone details
+   */
+  get: async (phoneId) => {
     try {
       console.log(`Fetching phone with ID: ${phoneId}`);
       const response = await fetch(`/assets/phones/${phoneId}.json`);
@@ -129,7 +146,18 @@ const PhoneService = {
     }
   },
 
-  // Helper function to get correct image URL path
+  /**
+   * Alias for get for backwards compatibility
+   */
+  getPhone: async (phoneId) => {
+    return PhoneService.get(phoneId);
+  },
+
+  /**
+   * Helper function to get correct image URL path
+   * @param {string} imageUrl - Raw image URL from data
+   * @returns {string} Properly formatted image URL for the application
+   */
   getImageUrl: (imageUrl) => {
     if (!imageUrl) return '/assets/img/phones/placeholder.svg';
 

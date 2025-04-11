@@ -21,8 +21,8 @@
     "eject": "react-scripts eject",
     "test:e2e": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:comparison": "playwright test functionality-comparison.spec.js",
-    "test:visual": "playwright test visual-comparison.spec.js",
+    "test:comparison": "playwright test tests/scripts/functionality-comparison.spec.js",
+    "test:visual": "playwright test tests/scripts/visual-comparison.spec.js",
     "test:report": "npx playwright show-report"
   },
   "eslintConfig": {

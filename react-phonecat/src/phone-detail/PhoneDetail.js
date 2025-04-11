@@ -6,7 +6,7 @@ import './PhoneDetail.css';
 const PhoneDetail = () => {
   const { phoneId } = useParams();
   const [phone, setPhone] = useState(null);
-  const [mainImageUrl, setMainImageUrl] = useState('');
+  const [mainImageIndex, setMainImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -16,7 +16,7 @@ const PhoneDetail = () => {
         setLoading(true);
         const data = await PhoneService.get(phoneId);
         setPhone(data);
-        setMainImageUrl(data.images[0]);
+        setMainImageIndex(0);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching phone details:', error);
@@ -28,20 +28,20 @@ const PhoneDetail = () => {
     fetchPhoneDetail();
   }, [phoneId]);
   
-  const setImage = (imageUrl) => {
-    setMainImageUrl(imageUrl);
+  const setImage = (index) => {
+    setMainImageIndex(index);
   };
   
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading" data-testid="loading-indicator">Loading...</div>;
   }
   
   if (error) {
-    return <div className="error">{error}</div>;
+    return <div className="error" data-testid="error-message">{error}</div>;
   }
   
   if (!phone) {
-    return <div className="not-found">Phone not found</div>;
+    return <div className="not-found" data-testid="not-found">Phone not found</div>;
   }
   
   return (
@@ -49,40 +49,37 @@ const PhoneDetail = () => {
       <div className="row">
         <div className="col-md-12">
           {/* Phone header */}
-          <h1 data-testid="phone-detail-name">{phone.name}</h1>
+          <h1 data-testid="phone-name">{phone.name}</h1>
           
           {/* Main phone image container - matching Angular structure */}
           <div className="phone-images">
-            {phone.images.map((img, index) => (
-              <img 
-                key={index}
-                src={`${process.env.PUBLIC_URL}/${img}`}
-                className={`phone ${img === mainImageUrl ? 'selected' : ''}`}
-                alt={`${phone.name} - ${index}`}
-                data-testid={`phone-detail-image-${index}`}
-              />
-            ))}
+            <img 
+              src={phone.images[mainImageIndex]} 
+              alt={phone.name} 
+              className="phone selected"
+              data-testid="main-image"
+            />
           </div>
           
           {/* Phone description */}
-          <p>{phone.description}</p>
+          <p data-testid="phone-description">{phone.description}</p>
           
           {/* Thumbnails */}
           <ul className="phone-thumbs">
             {phone.images.map((img, index) => (
               <li key={index}>
                 <img 
-                  src={`${process.env.PUBLIC_URL}/${img}`}
-                  onClick={() => setImage(img)}
+                  src={img}
+                  onClick={() => setImage(index)}
                   alt={`${phone.name} - thumbnail ${index}`}
-                  data-testid={`phone-detail-thumbnail-${index}`}
+                  data-testid={`thumbnail-${index}`}
                 />
               </li>
             ))}
           </ul>
           
           {/* Specs list - exactly matching Angular structure */}
-          <ul className="specs">
+          <ul className="specs" data-testid="specs-list">
             <li>
               <span>Availability and Networks</span>
               <dl>
@@ -198,7 +195,7 @@ const PhoneDetail = () => {
           </ul>
           
           {/* Back button - matching Angular's behavior */}
-          <Link to="/phones" className="btn btn-default">Back</Link>
+          <Link to="/phones" className="btn btn-default" data-testid="back-button">Back</Link>
         </div>
       </div>
     </div>

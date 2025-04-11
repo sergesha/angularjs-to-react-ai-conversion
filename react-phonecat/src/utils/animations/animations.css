@@ -1,0 +1,99 @@
+/* Animations matching AngularJS angular-phonecat animations */
+
+/* Animations for phone list items */
+.phone-list-item-enter {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.phone-list-item-enter-active {
+  opacity: 1;
+  max-height: 115px;
+  transition: opacity 400ms, max-height 400ms;
+}
+
+.phone-list-item-exit {
+  opacity: 1;
+  max-height: 115px;
+}
+
+.phone-list-item-exit-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 400ms, max-height 400ms;
+}
+
+/* Animation for phone image selection */
+.phone-image-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.phone-image-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.phone-image-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.phone-image-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Animation for route transitions */
+.view-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.view-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.view-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.view-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Animations for list filtering */
+@keyframes phone-filter-in {
+  from {
+    opacity: 0;
+    height: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    height: 115px;
+    transform: scale(1);
+  }
+}
+
+@keyframes phone-filter-out {
+  from {
+    opacity: 1;
+    height: 115px;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    height: 0;
+    transform: scale(0.8);
+  }
+}

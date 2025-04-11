@@ -3,21 +3,25 @@ import { Link } from 'react-router-dom';
 import PhoneService from '../../services/PhoneService';
 import './PhoneList.css';
 
+/**
+ * PhoneList component - displays a list of phones with filtering and sorting capabilities
+ * This is a functional component that replaces the AngularJS controller and template
+ */
 const PhoneList = () => {
-  // State used to replace the AngularJS controller
+  // State used to replace the AngularJS controller properties
   const [phones, setPhones] = useState([]);
   const [query, setQuery] = useState('');
   const [orderProp, setOrderProp] = useState('age');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch phones data on component mount
+  // Fetch phones data on component mount - similar to ngOnInit in Angular
   useEffect(() => {
     const fetchPhones = async () => {
       setLoading(true);
       try {
         console.log('Fetching phones...');
-        const data = await PhoneService.getPhones();
+        const data = await PhoneService.getAll();
         console.log('Phones data received:', data);
 
         // Ensure data is an array
@@ -40,7 +44,7 @@ const PhoneList = () => {
     fetchPhones();
   }, []);
 
-  // Filter phones based on search query
+  // Filter phones based on search query - replacing Angular's filter pipe
   const filteredPhones = Array.isArray(phones)
     ? phones.filter(phone => {
         const searchString = `${phone.name} ${phone.snippet}`.toLowerCase();
@@ -48,7 +52,7 @@ const PhoneList = () => {
       })
     : [];
 
-  // Sort phones based on selected order
+  // Sort phones based on selected order - replacing Angular's orderBy pipe
   const sortedPhones = [...filteredPhones].sort((a, b) => {
     if (orderProp === 'name') {
       return a.name.localeCompare(b.name);
@@ -68,35 +72,34 @@ const PhoneList = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        {/* Top controls for search and sort */}
-        <div className="search-controls col-md-12">
-          <div className="search-box">
-            <p>
-              Search:
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="form-control"
-              />
-            </p>
-          </div>
-          <div className="sort-box">
-            <p>
-              Sort by:
-              <select
-                value={orderProp}
-                onChange={(e) => setOrderProp(e.target.value)}
-                className="form-control"
-              >
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-              </select>
-            </p>
-          </div>
+        {/* Sidebar content - similar to the AngularJS template */}
+        <div className="col-md-2">
+          <p>
+            Search:
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              data-testid="search-input"
+              className="form-control"
+            />
+          </p>
+          
+          <p>
+            Sort by:
+            <select
+              value={orderProp}
+              onChange={(e) => setOrderProp(e.target.value)}
+              data-testid="sort-select"
+              className="form-control"
+            >
+              <option value="name">Alphabetical</option>
+              <option value="age">Newest</option>
+            </select>
+          </p>
         </div>
 
-        {/* Phone list */}
-        <div className="col-md-12">
+        {/* Body content - similar to the AngularJS template */}
+        <div className="col-md-10">
           <ul className="phones">
             {sortedPhones.length > 0 ? (
               sortedPhones.map((phone) => (
