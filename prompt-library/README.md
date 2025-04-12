@@ -6,14 +6,14 @@ This library contains a set of prompts designed to help engineers convert Angula
 
 | Prompt | Description |
 |--------|-------------|
-| [Components](./COMPONENTS.md) | Convert AngularJS components and directives to React components |
-| [Services](./SERVICES.md) | Convert AngularJS services to React hooks and context |
-| [Templates](./TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
-| [Data Binding](./DATA-BINDING.md) | Convert two-way data binding to React's unidirectional flow |
-| [Routing](./ROUTING.md) | Convert ngRoute/UI-Router to React Router |
-| [Animations](./ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
-| [Project Structure](./PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
-| [Testing](./TESTING.md) | Convert AngularJS tests to React testing approaches |
+| [Components](COMPONENTS.md) | Convert AngularJS components and directives to React components |
+| [Services](SERVICES.md) | Convert AngularJS services to React hooks and context |
+| [Templates](TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
+| [Data Binding](DATA-BINDING.md) | Convert two-way data binding to React's unidirectional flow |
+| [Routing](ROUTING.md) | Convert ngRoute/UI-Router to React Router |
+| [Animations](ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
+| [Project Structure](PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
+| [Testing](TESTING.md) | Convert AngularJS tests to React testing approaches |
 
 ## How to Use This Library
 

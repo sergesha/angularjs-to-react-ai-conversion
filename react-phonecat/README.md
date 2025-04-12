@@ -83,7 +83,7 @@ For more detailed information, please see:
 
 - [Conversion Report](docs/CONVERSION-REPORT.md) - Details on the conversion process
 - [Testing Guide](docs/TESTING-GUIDE.md) - Guide for running and analyzing tests
-- [Prompt Library](prompt-library/PROMPT-LIBRARY-INDEX.md) - Index of conversion prompts
+- [Prompt Library](../prompt-library/PROMPT-LIBRARY-INDEX.md) - Index of conversion prompts
 
 ## Contributing
 
