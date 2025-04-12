@@ -74,22 +74,25 @@ const PhoneDetail = () => {
     <div className="phone-detail container-fluid">
       <div className="row">
         <div className="col-md-12">
-          {/* Phone header */}
-          <h1 data-testid="phone-name">{phone.name}</h1>
-
-          {/* Main phone image container */}
+          {/* Main phone image container - Exactly matching the Angular structure */}
           <div className="phone-images">
             <TransitionGroup>
-              <CSSTransition key={mainImageUrl} classNames="phone-image" timeout={300}>
-                <img
-                  src={PhoneService.getImageUrl(mainImageUrl)}
-                  className="phone selected"
-                  alt={phone.name}
-                  data-testid="main-image"
-                />
-              </CSSTransition>
+              {phone.images && phone.images.map((img, index) => (
+                <CSSTransition key={img} classNames="phone-image" timeout={300}>
+                  <img
+                    src={PhoneService.getImageUrl(img)}
+                    className={`phone ${img === mainImageUrl ? 'selected' : ''}`}
+                    style={{ maxWidth: '100%', objectFit: 'contain' }}
+                    alt={phone.name}
+                    data-testid={img === mainImageUrl ? "main-image" : `alt-image-${index}`}
+                  />
+                </CSSTransition>
+              ))}
             </TransitionGroup>
           </div>
+
+          {/* Phone header */}
+          <h1 data-testid="phone-name">{phone.name}</h1>
 
           {/* Phone description */}
           <p data-testid="phone-description">{phone.description}</p>

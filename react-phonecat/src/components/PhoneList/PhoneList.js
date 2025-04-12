@@ -78,7 +78,7 @@ const PhoneList = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               data-testid="search-input"
-              className="form-control"
+              style={{ marginTop: '5px', width: '100%' }}
             />
           </p>
 
@@ -88,7 +88,8 @@ const PhoneList = () => {
               value={orderProp}
               onChange={(e) => setOrderProp(e.target.value)}
               data-testid="sort-select"
-              className="form-control"
+              style={{ marginTop: '5px', width: '100%' }}
+
             >
               <option value="name">Alphabetical</option>
               <option value="age">Newest</option>
@@ -110,8 +111,8 @@ const PhoneList = () => {
                           alt={phone.name}
                         />
                       </Link>
-                      <Link to={`/phones/${phone.id}`} className="phone-name">{phone.name}</Link>
-                      <p className="phone-snippet">{phone.snippet}</p>
+                      <Link to={`/phones/${phone.id}`}>{phone.name}</Link>
+                      <p>{phone.snippet}</p>
                     </li>
                   </CSSTransition>
                 ))
