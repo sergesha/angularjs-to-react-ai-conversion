@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PhoneService from '../../services/PhoneService';
 import './PhoneList.css';
 
@@ -20,15 +21,12 @@ const PhoneList = () => {
     const fetchPhones = async () => {
       setLoading(true);
       try {
-        console.log('Fetching phones...');
         const data = await PhoneService.getAll();
-        console.log('Phones data received:', data);
 
         // Ensure data is an array
         if (Array.isArray(data)) {
           setPhones(data);
         } else {
-          console.error('Phones data is not an array:', data);
           setError('Invalid phone data format. Please try again later.');
           setPhones([]);
         }
@@ -72,7 +70,7 @@ const PhoneList = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        {/* Sidebar content - similar to the AngularJS template */}
+        {/* Sidebar content - matching the AngularJS template */}
         <div className="col-md-2">
           <p>
             Search:
@@ -83,7 +81,7 @@ const PhoneList = () => {
               className="form-control"
             />
           </p>
-          
+
           <p>
             Sort by:
             <select
@@ -98,32 +96,33 @@ const PhoneList = () => {
           </p>
         </div>
 
-        {/* Body content - similar to the AngularJS template */}
+        {/* Body content - matching the AngularJS template */}
         <div className="col-md-10">
           <ul className="phones">
-            {sortedPhones.length > 0 ? (
-              sortedPhones.map((phone) => (
-                <li key={phone.id} className="thumbnail phone-list-item">
-                  <Link to={`/phones/${phone.id}`} className="thumb">
-                    <img
-                      src={PhoneService.getImageUrl(phone.imageUrl)}
-                      alt={phone.name}
-                      onError={(e) => {
-                        console.log(`Error loading image: ${e.target.src}`);
-                        e.target.onerror = null; // Prevent infinite loop
-                        e.target.src = '/assets/img/phones/placeholder.svg';
-                      }}
-                    />
-                  </Link>
-                  <Link to={`/phones/${phone.id}`} className="phone-name">{phone.name}</Link>
-                  <p className="phone-snippet">{phone.snippet}</p>
-                </li>
-              ))
-            ) : (
-              <div>
-                <p>No phones found</p>
-              </div>
-            )}
+            <TransitionGroup>
+              {sortedPhones.length > 0 ? (
+                sortedPhones.map((phone) => (
+                  <CSSTransition key={phone.id} classNames="phone-list-item" timeout={500}>
+                    <li className="thumbnail phone-list-item">
+                      <Link to={`/phones/${phone.id}`} className="thumb">
+                        <img
+                          src={PhoneService.getImageUrl(phone.imageUrl)}
+                          alt={phone.name}
+                        />
+                      </Link>
+                      <Link to={`/phones/${phone.id}`} className="phone-name">{phone.name}</Link>
+                      <p className="phone-snippet">{phone.snippet}</p>
+                    </li>
+                  </CSSTransition>
+                ))
+              ) : (
+                <CSSTransition classNames="phone-list-item" timeout={500}>
+                  <div>
+                    <p>No phones found</p>
+                  </div>
+                </CSSTransition>
+              )}
+            </TransitionGroup>
           </ul>
         </div>
       </div>

@@ -1,6 +1,72 @@
 /* Animations matching AngularJS angular-phonecat animations */
 
-/* Animations for phone list items */
+/* Animate `ngRepeat` in `phoneList` component */
+.phone-list-item.ng-enter,
+.phone-list-item.ng-leave,
+.phone-list-item.ng-move {
+  overflow: hidden;
+  transition: 0.5s linear all;
+}
+
+.phone-list-item.ng-enter,
+.phone-list-item.ng-leave.ng-leave-active,
+.phone-list-item.ng-move {
+  height: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.phone-list-item.ng-enter.ng-enter-active,
+.phone-list-item.ng-leave,
+.phone-list-item.ng-move.ng-move-active {
+  height: 120px;
+  margin-bottom: 20px;
+  opacity: 1;
+  padding-bottom: 4px;
+  padding-top: 15px;
+}
+
+/* Animate view transitions with `ngView` */
+.view-container {
+  position: relative;
+}
+
+.view-frame {
+  margin-top: 20px;
+}
+
+.view-frame.ng-enter,
+.view-frame.ng-leave {
+  background: white;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.view-frame.ng-enter {
+  animation: 1s fade-in;
+  z-index: 100;
+}
+
+.view-frame.ng-leave {
+  animation: 1s fade-out;
+  z-index: 99;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* React specific animations */
 .phone-list-item-enter {
   opacity: 0;
   max-height: 0;
@@ -46,54 +112,4 @@
   opacity: 0;
   transform: translateX(-20px);
   transition: opacity 300ms, transform 300ms;
-}
-
-/* Animation for route transitions */
-.view-transition-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.view-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.view-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.view-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Animations for list filtering */
-@keyframes phone-filter-in {
-  from {
-    opacity: 0;
-    height: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    height: 115px;
-    transform: scale(1);
-  }
-}
-
-@keyframes phone-filter-out {
-  from {
-    opacity: 1;
-    height: 115px;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    height: 0;
-    transform: scale(0.8);
-  }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PhoneService from '../../services/PhoneService';
 import checkmark from '../../utils/checkmark';
 import './PhoneDetail.css';
@@ -20,10 +21,8 @@ const PhoneDetail = () => {
     const fetchPhone = async () => {
       setLoading(true);
       try {
-        console.log(`Fetching phone with ID: ${phoneId}`);
         const data = await PhoneService.get(phoneId);
-        console.log(`Phone ${phoneId} data received:`, data);
-        
+
         if (data) {
           setPhone(data);
           if (data.images && data.images.length > 0) {
@@ -72,49 +71,43 @@ const PhoneDetail = () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="phone-detail container-fluid">
       <div className="row">
         <div className="col-md-12">
           {/* Phone header */}
           <h1 data-testid="phone-name">{phone.name}</h1>
-          
+
           {/* Main phone image container */}
           <div className="phone-images">
-            <img 
-              src={PhoneService.getImageUrl(mainImageUrl)} 
-              alt={phone.name} 
-              className="phone selected"
-              data-testid="main-image"
-              onError={(e) => {
-                console.log(`Error loading image: ${e.target.src}`);
-                e.target.onerror = null; // Prevent infinite loop
-                e.target.src = '/assets/img/phones/placeholder.svg';
-              }}
-            />
+            <TransitionGroup>
+              <CSSTransition key={mainImageUrl} classNames="phone-image" timeout={300}>
+                <img
+                  src={PhoneService.getImageUrl(mainImageUrl)}
+                  className="phone selected"
+                  alt={phone.name}
+                  data-testid="main-image"
+                />
+              </CSSTransition>
+            </TransitionGroup>
           </div>
-          
+
           {/* Phone description */}
           <p data-testid="phone-description">{phone.description}</p>
-          
+
           {/* Thumbnails */}
           <ul className="phone-thumbs">
             {phone.images && phone.images.map((img, index) => (
               <li key={index}>
-                <img 
-                  src={PhoneService.getImageUrl(img)} 
+                <img
+                  src={PhoneService.getImageUrl(img)}
                   onClick={() => setImage(img)}
                   alt={`${phone.name} - thumbnail ${index}`}
                   data-testid={`thumbnail-${index}`}
-                  onError={(e) => {
-                    console.log(`Error loading thumbnail: ${e.target.src}`);
-                    e.target.onerror = null; // Prevent infinite loop
-                    e.target.src = '/assets/img/phones/placeholder.svg';
-                  }}
                 />
               </li>
             ))}
           </ul>
-          
+
           {/* Specs list - matching Angular structure */}
           <ul className="specs" data-testid="specs-list">
             <li>
@@ -126,7 +119,7 @@ const PhoneDetail = () => {
                 ))}
               </dl>
             </li>
-            
+
             <li>
               <span>Battery</span>
               <dl>
@@ -138,7 +131,7 @@ const PhoneDetail = () => {
                 <dd>{phone.battery && phone.battery.standbyTime}</dd>
               </dl>
             </li>
-            
+
             <li>
               <span>Storage and Memory</span>
               <dl>
@@ -148,7 +141,7 @@ const PhoneDetail = () => {
                 <dd>{phone.storage && phone.storage.flash}</dd>
               </dl>
             </li>
-            
+
             <li>
               <span>Connectivity</span>
               <dl>
@@ -159,16 +152,16 @@ const PhoneDetail = () => {
                 <dt>Bluetooth</dt>
                 <dd>{phone.connectivity && phone.connectivity.bluetooth}</dd>
                 <dt>Infrared</dt>
-                <dd dangerouslySetInnerHTML={{ 
-                  __html: checkmark(phone.connectivity && phone.connectivity.infrared) 
+                <dd dangerouslySetInnerHTML={{
+                  __html: checkmark(phone.connectivity && phone.connectivity.infrared)
                 }} />
                 <dt>GPS</dt>
-                <dd dangerouslySetInnerHTML={{ 
-                  __html: checkmark(phone.connectivity && phone.connectivity.gps) 
+                <dd dangerouslySetInnerHTML={{
+                  __html: checkmark(phone.connectivity && phone.connectivity.gps)
                 }} />
               </dl>
             </li>
-            
+
             <li>
               <span>Android</span>
               <dl>
@@ -178,12 +171,12 @@ const PhoneDetail = () => {
                 <dd>{phone.android && phone.android.ui}</dd>
               </dl>
             </li>
-            
+
             <li>
               <span>Size and Weight</span>
               <dl>
                 <dt>Dimensions</dt>
-                {phone.sizeAndWeight && phone.sizeAndWeight.dimensions && 
+                {phone.sizeAndWeight && phone.sizeAndWeight.dimensions &&
                  phone.sizeAndWeight.dimensions.map((dim, index) => (
                   <dd key={index}>{dim}</dd>
                 ))}
@@ -191,7 +184,7 @@ const PhoneDetail = () => {
                 <dd>{phone.sizeAndWeight && phone.sizeAndWeight.weight}</dd>
               </dl>
             </li>
-            
+
             <li>
               <span>Display</span>
               <dl>
@@ -200,12 +193,12 @@ const PhoneDetail = () => {
                 <dt>Screen resolution</dt>
                 <dd>{phone.display && phone.display.screenResolution}</dd>
                 <dt>Touch screen</dt>
-                <dd dangerouslySetInnerHTML={{ 
-                  __html: checkmark(phone.display && phone.display.touchScreen) 
+                <dd dangerouslySetInnerHTML={{
+                  __html: checkmark(phone.display && phone.display.touchScreen)
                 }} />
               </dl>
             </li>
-            
+
             <li>
               <span>Hardware</span>
               <dl>
@@ -216,16 +209,16 @@ const PhoneDetail = () => {
                 <dt>Audio / headphone jack</dt>
                 <dd>{phone.hardware && phone.hardware.audioJack}</dd>
                 <dt>FM Radio</dt>
-                <dd dangerouslySetInnerHTML={{ 
-                  __html: checkmark(phone.hardware && phone.hardware.fmRadio) 
+                <dd dangerouslySetInnerHTML={{
+                  __html: checkmark(phone.hardware && phone.hardware.fmRadio)
                 }} />
                 <dt>Accelerometer</dt>
-                <dd dangerouslySetInnerHTML={{ 
-                  __html: checkmark(phone.hardware && phone.hardware.accelerometer) 
+                <dd dangerouslySetInnerHTML={{
+                  __html: checkmark(phone.hardware && phone.hardware.accelerometer)
                 }} />
               </dl>
             </li>
-            
+
             <li>
               <span>Camera</span>
               <dl>
@@ -235,13 +228,13 @@ const PhoneDetail = () => {
                 <dd>{phone.camera && phone.camera.features && phone.camera.features.join(', ')}</dd>
               </dl>
             </li>
-            
+
             <li>
               <span>Additional Features</span>
               <dd>{phone.additionalFeatures}</dd>
             </li>
           </ul>
-          
+
           {/* Back button */}
           <Link to="/phones" className="btn btn-default" data-testid="back-button">Back</Link>
         </div>

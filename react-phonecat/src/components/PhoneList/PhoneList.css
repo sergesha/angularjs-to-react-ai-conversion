@@ -1,17 +1,13 @@
-/* Phone list styles matching the original AngularJS app */
-
-/* View: Phone list */
+/* Phone list styles - exact match to Angular app */
 .phones {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .phones li {
   clear: both;
   height: 115px;
   padding-top: 15px;
-  border-bottom: 1px solid #eee;
 }
 
 .thumb {
@@ -25,49 +21,11 @@
 .thumb img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
 }
 
-.phone-name {
-  color: #337ab7;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1em;
-}
-
-.phone-name:hover {
-  text-decoration: underline;
-}
-
-.phone-snippet {
-  margin-top: 5px;
-  color: #555;
-}
-
-/* Search and sort controls at the top of the page */
-.search-controls {
-  display: flex;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.search-box, .sort-box {
-  margin-right: 30px;
-}
-
-.search-box p, .sort-box p {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0;
-}
-
-.form-control {
+/* Search and sort controls */
+.search-box input, .sort-box select {
   margin-left: 10px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 200px;
 }
 
 /* Loading and Error states */
@@ -85,33 +43,4 @@
 
 .error {
   color: #d9534f;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .search-controls {
-    flex-direction: column;
-  }
-
-  .search-box, .sort-box {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .search-box p, .sort-box p {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .form-control {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 5px;
-  }
-
-  .phones li {
-    height: auto;
-    min-height: 120px;
-  }
 }
