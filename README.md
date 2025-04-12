@@ -9,7 +9,7 @@ The project includes:
 1. **Angular PhoneCat**: The original AngularJS application ([angular-phonecat](https://github.com/angular/angular-phonecat))
 2. **React PhoneCat**: The converted React application (`react-phonecat/`)
 3. **Prompt Library**: A collection of reusable prompts for AngularJS to React conversion (`prompt-library/`)
-4. **Documentation**: Comprehensive documentation of the conversion process (`react-phonecat/docs/`)
+4. **Documentation**: Comprehensive documentation of the conversion process (`docs/`)
 
 ## Key Features
 
@@ -36,9 +36,9 @@ The [prompt library](prompt-library/PROMPT-LIBRARY-INDEX.md) contains specialize
 
 The project includes comprehensive documentation:
 
-- [Conversion Report](react-phonecat/docs/CONVERSION-REPORT.md) - Detailed report on the conversion process
-- [Testing Guide](react-phonecat/docs/TESTING-GUIDE.md) - Guide for running and analyzing tests
-- [Lessons Learned](react-phonecat/docs/LESSONS_LEARNED.md) - Insights and recommendations from the conversion
+- [Conversion Report](docs/CONVERSION-REPORT.md) - Detailed report on the conversion process
+- [Testing Guide](docs/TESTING-GUIDE.md) - Guide for running and analyzing tests
+- [Lessons Learned](docs/LESSONS_LEARNED.md) - Insights and recommendations from the conversion
 
 ## Getting Started
 
@@ -85,11 +85,11 @@ The conversion achieved:
 ├── react-phonecat/           # Converted React application
 │   ├── src/                  # Application source code
 │   ├── public/               # Static assets
-│   ├── docs/                 # Project documentation
 │   └── tests/                # Test scripts and results
+├── docs/                     # Project documentation
 └── prompt-library/           # AngularJS to React conversion prompts
 ```
 
 ## Learn More
 
-For more information on the conversion process and insights, see the [Conversion Report](react-phonecat/docs/CONVERSION-REPORT.md) and [Lessons Learned](react-phonecat/docs/LESSONS_LEARNED.md).
+For more information on the conversion process and insights, see the [Conversion Report](docs/CONVERSION-REPORT.md) and [Lessons Learned](docs/LESSONS_LEARNED.md).
