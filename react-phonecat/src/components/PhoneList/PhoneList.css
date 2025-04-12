@@ -23,9 +23,31 @@
   max-height: 100%;
 }
 
-/* Search and sort controls */
-.search-box input, .sort-box select {
-  margin-left: 10px;
+/* Class additions to match Angular exactly */
+.thumbnail {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.phone-list-item {
+  margin-bottom: 0;
+}
+
+/* Form controls - exactly matching Angular's style */
+input, select {
+  display: inline-block;
+  margin-left: 0.5em;
+  margin-top: 0.2em;
+  width: auto;
+}
+
+/* Make sure the sidebar filters match Angular's exact layout */
+.col-md-2 p {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Loading and Error states */
