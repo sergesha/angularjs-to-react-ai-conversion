@@ -1,68 +1,62 @@
 # AngularJS to React Conversion Prompt Library
 
-> **Note:** This is a refined version of our prompt library. For a streamlined experience, please use the REFINED-*.md files. The original prompts have been kept for reference.
+This library contains a set of prompts designed to help engineers convert AngularJS applications to React. Each prompt provides specific guidance for converting different aspects of an AngularJS application to their React equivalents.
 
-## Purpose
+## Prompt Library Contents
 
-This prompt library provides a comprehensive set of instructions designed to assist developers in converting AngularJS applications to React. The prompts are intentionally general and can be applied to any AngularJS to React conversion project.
-
-## Refined Prompt Library
-
-We've streamlined our prompt library for better efficiency and clarity. The new refined prompts are:
-
-1. [Components Conversion](REFINED-COMPONENTS.md)
-2. [Services Conversion](REFINED-SERVICES.md)
-3. [Templates Conversion](REFINED-TEMPLATES.md)
-4. [Data Binding Conversion](REFINED-DATA-BINDING.md)
-5. [Routing Conversion](REFINED-ROUTING.md)
-6. [Animations Conversion](REFINED-ANIMATIONS.md)
-7. [Project Structure Conversion](REFINED-PROJECT-STRUCTURE.md)
-8. [Testing Conversion](REFINED-TESTING.md)
+| Prompt | Description |
+|--------|-------------|
+| [Components](./COMPONENTS.md) | Convert AngularJS components and directives to React components |
+| [Services](./SERVICES.md) | Convert AngularJS services to React hooks and context |
+| [Templates](./TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
+| [Data Binding](./DATA-BINDING.md) | Convert two-way data binding to React's unidirectional flow |
+| [Routing](./ROUTING.md) | Convert ngRoute/UI-Router to React Router |
+| [Animations](./ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
+| [Project Structure](./PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
+| [Testing](./TESTING.md) | Convert AngularJS tests to React testing approaches |
 
 ## How to Use This Library
 
-1. **Identify what you need to convert**: Component, service, routing, etc.
-2. **Find the appropriate prompt**: Use the corresponding prompt file for your conversion task
-3. **Customize the prompt**: Add your specific AngularJS code to convert
-4. **Apply the generated solution**: Adapt it to your specific project needs
-5. **Test the converted code**: Ensure functionality matches the original
+1. **Identify the component to convert:**
+   - Determine what type of AngularJS code you're converting (component, service, etc.)
+   - Select the appropriate prompt from the library
 
-## Lessons Learned
+2. **Use specific prompts for specific tasks:**
+   - Each prompt focuses on a particular conversion challenge
+   - Combine multiple prompts for complex components
 
-We've documented our experience and insights gained during the conversion process in the [LESSONS_LEARNED.md](LESSONS_LEARNED.md) file. This includes:
+3. **Understand the key differences:**
+   - Each prompt highlights the fundamental differences between AngularJS and React
+   - Focus on the mental model shifts, not just syntax changes
 
-- An overview of the conversion process
-- Challenges we faced
-- Best practices we identified
-- Recommendations for future projects
-- Evaluation of the prompt library's effectiveness
+4. **Apply the principles:**
+   - Use the examples as guidance, not as copy-paste solutions
+   - Adapt the patterns to your specific codebase and requirements
 
-## Original Task Description
+## Conversion Process
 
-1. **Application Conversion:**
-   - Convert the AngularJS [angular-phonecat](https://github.com/angular/angular-phonecat) application to React.
-   - Ensure the React application replicates the functionality and is as close as possible to the original AngularJS version.
-  
-2. **Prompt Library Creation:**
-   - Build a minimal and sufficient library of prompts for automating the code transformation process.
-   - These prompts should be reusable and focused on transforming AngularJS-specific constructs into React-specific principles.
- 
-3. **Acceleration Evaluation:**
-   - Evaluate how much the prompt library accelerates the transformation process.
-   - Document time saved compared to manual conversion.
+For a systematic conversion of an entire application, follow this suggested order:
 
-For detailed information about the conversion process, refer to the [CONVERSION-REPORT.md](CONVERSION-REPORT.md) file.
+1. Set up project structure
+2. Convert core services to hooks/context
+3. Convert shared components and utilities
+4. Convert page components
+5. Implement routing
+6. Add animations
+7. Set up testing
 
-## Original Prompts (For Reference)
+## Conversion Principles
 
-These files are kept for reference but we recommend using the refined versions above:
+- **Component-first:** React is component-centric, so structure your code around components
+- **Unidirectional data flow:** Replace two-way binding with props down, events up
+- **Hooks for lifecycle:** Use React hooks to replace AngularJS lifecycle methods
+- **Composition over inheritance:** Use component composition instead of directive inheritance
+- **Explicit over implicit:** Make dependencies and data flow explicit
 
-- [Project Structure Conversion](CONVERSION-PROMPTS-PROJECT-STRUCTURE.md)
-- [Project Structure Simplification](CONVERSION-PROMPTS-PROJECT-STRUCTURE-SIMPLIFICATION.md)
-- [Component Conversion](CONVERSION-PROMPTS.md)
-- [Service Conversion](CONVERSION-PROMPTS-SERVICE.md)
-- [Routing Conversion](CONVERSION-PROMPTS-ROUTING.md)
-- [Template Transformation](CONVERSION-PROMPTS-TEMPLATE.md)
-- [Data Binding Conversion](CONVERSION-PROMPTS-DATA-BINDING.md)
-- [Animation Conversion](CONVERSION-PROMPTS-ANIMATION.md)
-- [Testing Implementation](CONVERSION-PROMPTS-TESTING.md)
+## Additional Resources
+
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [React Hooks API Reference](https://reactjs.org/docs/hooks-reference.html)
+- [React Router Documentation](https://reactrouter.com/en/main)
+- [Testing Library Documentation](https://testing-library.com/docs/)
+- [Lessons Learned](./LESSONS_LEARNED.md)
