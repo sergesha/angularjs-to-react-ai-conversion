@@ -9,6 +9,9 @@ react-phonecat/node_modules
 
 # testing
 /coverage
+# Allow tracking of the report directory structure but not its contents
+react-phonecat/tests/report/*
+!react-phonecat/tests/report/.gitkeep
 
 # production
 /build
