@@ -8,7 +8,7 @@ After running the tests with `npm run test:e2e`, you'll have several artifacts t
 
 1. **HTML Report** - Access it with `npm run test:report`
 2. **Console output** - Shows test success/failure and errors
-3. **Screenshots** - Located in the `test-results` directory
+3. **Screenshots** - Located in the `tests/results` directory
 4. **Trace files** - For detailed step-by-step debugging (when enabled)
 
 ## Interpreting Test Failures
@@ -136,7 +136,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 1. **Run the tests**: `npm run test:e2e`
 2. **View the report**: `npm run test:report`
 3. **Compare screenshots**:
-   - Open `test-results/angular-phone-list.png` and `test-results/react-phone-list.png`
+   - Open `tests/results/angular-phone-list.png` and `tests/results/react-phone-list.png`
    - Look for visual differences
 4. **Check functionality issues** in the test output
 5. **Prioritize fixes**:

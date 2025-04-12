@@ -139,23 +139,23 @@ function ensureDirectoryExists(dirPath) {
 
 test.describe('Visual Comparison', () => {
   test.beforeEach(async () => {
-    ensureDirectoryExists('test-results');
+    ensureDirectoryExists('tests/results');
   });
   
   test('Phone list page should look the same', async ({ page }) => {
     // Capture Angular screenshot
     await page.goto(`${angularApp.baseUrl}/#!/phones`);
     await page.waitForTimeout(1000); // Wait for images to load
-    await page.screenshot({ path: 'test-results/angular-list.png', fullPage: true });
+    await page.screenshot({ path: 'tests/results/angular-list.png', fullPage: true });
     
     // Capture React screenshot
     await page.goto(`${reactApp.baseUrl}/phones`);
     await page.waitForTimeout(1000); // Wait for images to load
-    await page.screenshot({ path: 'test-results/react-list.png', fullPage: true });
+    await page.screenshot({ path: 'tests/results/react-list.png', fullPage: true });
     
     // Implement screenshot comparison (requires additional library)
-    expect(fs.existsSync('test-results/angular-list.png')).toBeTruthy();
-    expect(fs.existsSync('test-results/react-list.png')).toBeTruthy();
+    expect(fs.existsSync('tests/results/angular-list.png')).toBeTruthy();
+    expect(fs.existsSync('tests/results/react-list.png')).toBeTruthy();
   });
 });
 ```

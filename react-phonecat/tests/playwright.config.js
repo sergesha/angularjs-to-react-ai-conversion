@@ -5,7 +5,7 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './tests/scripts',
+  testDir: './scripts',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -25,7 +25,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', { outputFolder: 'tests/report' }],
+    ['html', { outputFolder: './report' }],
     ['list']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -41,7 +41,7 @@ module.exports = defineConfig({
     screenshot: {
       mode: 'only-on-failure',
       fullPage: true,
-      path: './tests/results'
+      path: './results'
     },
   },
 
@@ -56,12 +56,12 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: 'cd react-phonecat && npm start',
+      command: 'cd ../react-phonecat && npm start',
       port: 3000,
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: 'cd angular-phonecat && npm start',
+      command: 'cd ../angular-phonecat && npm start',
       port: 8000,
       reuseExistingServer: !process.env.CI,
     }

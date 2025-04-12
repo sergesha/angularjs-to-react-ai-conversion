@@ -8,7 +8,8 @@ node_modules
 
 # testing
 /coverage
-/test-results
+/tests/results/*.png
+/tests/report
 /playwright-report
 
 # production

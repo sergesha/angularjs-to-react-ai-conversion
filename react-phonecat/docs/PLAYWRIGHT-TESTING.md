@@ -71,7 +71,7 @@ The tests are organized into two main categories:
 
 ## Test Results
 
-After running the tests, you'll find screenshots in the `test-results` directory that you can use for visual comparison:
+After running the tests, you'll find screenshots in the `tests/results` directory that you can use for visual comparison:
 
 - `angular-phone-list.png` vs `react-phone-list.png`
 - `angular-phone-detail.png` vs `react-phone-detail.png`
