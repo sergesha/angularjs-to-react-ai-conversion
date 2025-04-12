@@ -1,16 +1,6 @@
-/* Animations matching AngularJS angular-phonecat animations */
-
-/* Animate `ngRepeat` in `phoneList` component */
-.phone-list-item.ng-enter,
-.phone-list-item.ng-leave,
-.phone-list-item.ng-move {
+/* Animate `ngRepeat` equivalent in React */
+.phone-list-item-enter {
   overflow: hidden;
-  transition: 0.5s linear all;
-}
-
-.phone-list-item.ng-enter,
-.phone-list-item.ng-leave.ng-leave-active,
-.phone-list-item.ng-move {
   height: 0;
   margin-bottom: 0;
   opacity: 0;
@@ -18,17 +8,34 @@
   padding-top: 0;
 }
 
-.phone-list-item.ng-enter.ng-enter-active,
-.phone-list-item.ng-leave,
-.phone-list-item.ng-move.ng-move-active {
+.phone-list-item-enter-active {
   height: 120px;
   margin-bottom: 20px;
   opacity: 1;
   padding-bottom: 4px;
   padding-top: 15px;
+  transition: 0.5s linear all;
 }
 
-/* Animate view transitions with `ngView` */
+.phone-list-item-exit {
+  height: 120px;
+  margin-bottom: 20px;
+  opacity: 1;
+  padding-bottom: 4px;
+  padding-top: 15px;
+  overflow: hidden;
+}
+
+.phone-list-item-exit-active {
+  height: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  transition: 0.5s linear all;
+}
+
+/* Animate view transitions with React Router */
 .view-container {
   position: relative;
 }
@@ -37,23 +44,55 @@
   margin-top: 20px;
 }
 
-.view-frame.ng-enter,
-.view-frame.ng-leave {
+.view-frame-enter {
   background: white;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
-}
-
-.view-frame.ng-enter {
-  animation: 1s fade-in;
+  opacity: 0;
   z-index: 100;
 }
 
-.view-frame.ng-leave {
-  animation: 1s fade-out;
+.view-frame-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+  z-index: 100;
+}
+
+.view-frame-exit {
+  background: white;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 1;
   z-index: 99;
+}
+
+.view-frame-exit-active {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  z-index: 99;
+}
+
+/* Phone image transition animations */
+.phone-image-enter {
+  opacity: 0;
+}
+
+.phone-image-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.phone-image-exit {
+  opacity: 1;
+}
+
+.phone-image-exit-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
 }
 
 @keyframes fade-in {
@@ -64,52 +103,4 @@
 @keyframes fade-out {
   from { opacity: 1; }
   to   { opacity: 0; }
-}
-
-/* React specific animations */
-.phone-list-item-enter {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-}
-
-.phone-list-item-enter-active {
-  opacity: 1;
-  max-height: 115px;
-  transition: opacity 400ms, max-height 400ms;
-}
-
-.phone-list-item-exit {
-  opacity: 1;
-  max-height: 115px;
-}
-
-.phone-list-item-exit-active {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 400ms, max-height 400ms;
-}
-
-/* Animation for phone image selection */
-.phone-image-enter {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.phone-image-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.phone-image-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.phone-image-exit-active {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 300ms, transform 300ms;
 }

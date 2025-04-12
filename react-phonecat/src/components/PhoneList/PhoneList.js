@@ -100,7 +100,12 @@ const PhoneList = () => {
             <TransitionGroup>
               {sortedPhones.length > 0 ? (
                 sortedPhones.map((phone) => (
-                  <CSSTransition key={phone.id} classNames="phone-list-item" timeout={500}>
+                  <CSSTransition
+                    key={phone.id}
+                    classNames="phone-list-item"
+                    timeout={500}
+                    appear={true}
+                  >
                     <li className="thumbnail phone-list-item">
                       <Link to={`/phones/${phone.id}`} className="thumb">
                         <img
@@ -114,7 +119,10 @@ const PhoneList = () => {
                   </CSSTransition>
                 ))
               ) : (
-                <CSSTransition classNames="phone-list-item" timeout={500}>
+                <CSSTransition
+                  classNames="phone-list-item"
+                  timeout={500}
+                >
                   <div>
                     <p>No phones found</p>
                   </div>

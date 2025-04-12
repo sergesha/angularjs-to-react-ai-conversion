@@ -11,17 +11,23 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <TransitionGroup className="view-container">
-      <CSSTransition key={location.key} classNames="view-frame" timeout={500}>
-        <div className="view-frame">
-          <Routes location={location}>
-            <Route path="/phones" element={<PhoneList />} />
-            <Route path="/phones/:phoneId" element={<PhoneDetail />} />
-            <Route path="*" element={<Navigate replace to="/phones" />} />
-          </Routes>
-        </div>
-      </CSSTransition>
-    </TransitionGroup>
+    <div className="view-container">
+      <TransitionGroup>
+        <CSSTransition
+          key={location.key}
+          classNames="view-frame"
+          timeout={1000} // Match Angular's 1s animation duration
+        >
+          <div className="view-frame">
+            <Routes location={location}>
+              <Route path="/phones" element={<PhoneList />} />
+              <Route path="/phones/:phoneId" element={<PhoneDetail />} />
+              <Route path="*" element={<Navigate replace to="/phones" />} />
+            </Routes>
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
   );
 };
 

@@ -72,19 +72,17 @@ const PhoneDetail = () => {
 
   return (
     <div className="phone-detail">
-      {/* Main phone image container - Exactly matching the Angular structure */}
+      {/* Main phone image container - Matching the Angular animation */}
       <div className="phone-images">
         <TransitionGroup>
-          {phone.images && phone.images.map((img) => (
-            <CSSTransition key={img} classNames="phone-image" timeout={300}>
-              <img
-                src={PhoneService.getImageUrl(img)}
-                className={`phone ${img === mainImageUrl ? 'selected' : ''}`}
-                alt={phone.name}
-                data-testid={img === mainImageUrl ? "main-image" : undefined}
-              />
-            </CSSTransition>
-          ))}
+          <CSSTransition key={mainImageUrl} classNames="phone-image" timeout={500}>
+            <img
+              src={PhoneService.getImageUrl(mainImageUrl)}
+              className="phone selected"
+              alt={phone.name}
+              data-testid="main-image"
+            />
+          </CSSTransition>
         </TransitionGroup>
       </div>
 
