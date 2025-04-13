@@ -11,6 +11,10 @@ The project includes:
 3. **Prompt Library**: A collection of reusable prompts for AngularJS to React conversion (`prompt-library/`)
 4. **Documentation**: Comprehensive documentation of the conversion process (`docs/`)
 
+## AI-Assisted Development
+
+This project was completed using Claude Sonnet 3.7, Anthropic's AI assistant, integrated via a JetBrains IDE plugin. This setup allowed Claude to interact directly with the codebase, providing real-time assistance for code conversion and refactoring. The integration streamlined the AngularJS to React conversion process while maintaining consistent quality throughout the application.
+
 ## Key Features
 
 - Complete conversion of AngularJS components to React functional components
