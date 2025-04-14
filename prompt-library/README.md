@@ -14,7 +14,10 @@ The goal of these prompts is to:
 
 *   **[Initial Project Setup](./PROJECT-SETUP.md):** Guides the creation of the React project repository, cloning the source AngularJS app as a submodule, and initializing the basic React structure.
 *   **[Playwright Testing Setup for Visual Comparison](./TESTING-SETUP-PLAYWRIGHT.md):** Details how to set up Playwright for visual regression testing, comparing the running AngularJS and React applications side-by-side.
-*   _(More prompts will be added here as the conversion progresses, covering components, services, routing, etc.)_
+*   **[Component Conversion](./COMPONENT-CONVERSION.md):** Provides detailed steps for converting AngularJS components to React functional components, including handling of state and props.
+*   **[Service Conversion](./SERVICE-CONVERSION.md):** Guides the transformation of AngularJS services into React context providers or custom hooks.
+*   **[Routing Setup](./ROUTING-SETUP.md):** Offers instructions on setting up React Router to replace AngularJS routing.
+*   _(More prompts will be added here as the conversion progresses, covering additional components, services, routing, etc.)_
 
 ## How to Use
 
