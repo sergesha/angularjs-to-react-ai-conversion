@@ -6,6 +6,7 @@ This library contains a set of prompts designed to help engineers convert Angula
 
 | Prompt | Description |
 |--------|-------------|
+| [Project Setup](PROJECT-SETUP.md) | Setup a new React project structure and tooling |
 | [Components](COMPONENTS.md) | Convert AngularJS components and directives to React components |
 | [Services](SERVICES.md) | Convert AngularJS services to React hooks and context |
 | [Templates](TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
@@ -14,6 +15,7 @@ This library contains a set of prompts designed to help engineers convert Angula
 | [Animations](ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
 | [Project Structure](PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
 | [Testing](TESTING.md) | Convert AngularJS tests to React testing approaches |
+| [Testing Setup (Playwright)](TESTING-SETUP-PLAYWRIGHT.md) | Setup Playwright for end-to-end testing in the React project |
 
 ## How to Use This Library
 
@@ -37,13 +39,14 @@ This library contains a set of prompts designed to help engineers convert Angula
 
 For a systematic conversion of an entire application, follow this suggested order:
 
-1. Set up project structure
+1. Set up project structure and tooling (use `PROJECT-SETUP.md`)
 2. Convert core services to hooks/context
 3. Convert shared components and utilities
 4. Convert page components
 5. Implement routing
 6. Add animations
-7. Set up testing
+7. Set up testing frameworks (use `TESTING.md` and `TESTING-SETUP-PLAYWRIGHT.md`)
+8. Write tests
 
 ## Conversion Principles
 
@@ -59,4 +62,5 @@ For a systematic conversion of an entire application, follow this suggested orde
 - [React Hooks API Reference](https://reactjs.org/docs/hooks-reference.html)
 - [React Router Documentation](https://reactrouter.com/en/main)
 - [Testing Library Documentation](https://testing-library.com/docs/)
+- [Playwright Documentation](https://playwright.dev/docs/intro)
 - [Lessons Learned](./LESSONS_LEARNED.md)
