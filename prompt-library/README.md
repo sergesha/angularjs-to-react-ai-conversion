@@ -1,31 +1,30 @@
-# AngularJS-to-React Conversion Prompt Library
+# AngularJS to React Conversion Prompt Library
 
-This library contains a collection of prompts designed to assist and accelerate the process of converting AngularJS applications to React. The prompts focus on breaking down the conversion into manageable steps and leveraging AI assistance for specific transformations.
+This library contains a collection of prompts designed to assist in the conversion of AngularJS applications to React, leveraging AI assistance where possible.
 
 ## Purpose
 
-The goal of this library is to:
+The goal of these prompts is to:
 
-1.  **Standardize** the conversion approach.
-2.  **Automate** repetitive transformation tasks using AI prompts.
-3.  **Guide** developers through specific AngularJS-to-React pattern conversions.
-4.  **Improve** efficiency and reduce the manual effort required for migration.
+1.  **Standardize:** Provide a consistent approach to common conversion tasks.
+2.  **Automate:** Guide AI tools to perform specific, repeatable transformations.
+3.  **Accelerate:** Speed up the migration process by breaking down complex tasks into manageable, promptable steps.
 
 ## Available Prompts
 
-*   **[Initial Project Setup](./PROJECT-SETUP.md):** Guides the initial setup of the target React project repository, including adding the original AngularJS source as a submodule.
-*   **[Testing Setup with Playwright](./TESTING-SETUP-PLAYWRIGHT.md):** Details how to set up Playwright for visual regression testing, enabling side-by-side comparison and a "test-compare-fix-retest" workflow between the AngularJS and React applications.
-*   *(More prompts will be added here as the conversion progresses, covering components, services, routing, data binding, etc.)*
+*   **[Initial Project Setup](./PROJECT-SETUP.md):** Guides the creation of the React project repository, cloning the source AngularJS app as a submodule, and initializing the basic React structure.
+*   **[Playwright Testing Setup for Visual Comparison](./TESTING-SETUP-PLAYWRIGHT.md):** Details how to set up Playwright for visual regression testing, comparing the running AngularJS and React applications side-by-side.
+*   _(More prompts will be added here as the conversion progresses, covering components, services, routing, etc.)_
 
 ## How to Use
 
-1.  **Identify** the specific conversion task you need to perform (e.g., setting up the project, converting a controller, setting up testing).
-2.  **Select** the relevant prompt from the list above.
-3.  **Copy** the prompt content.
-4.  **Paste** it into your AI assistant (like Gemini, ChatGPT, etc.).
-5.  **Provide** any necessary context (e.g., specific code snippets from your AngularJS application).
-6.  **Review and adapt** the AI-generated output for your specific needs.
+1.  Identify the conversion task you need to perform (e.g., setting up the project, converting a specific component).
+2.  Find the relevant prompt in this library.
+3.  Copy the prompt content.
+4.  Paste it into your AI assistant (like Gemini, ChatGPT, etc.).
+5.  Provide any necessary context specific to your application (e.g., code snippets from your AngularJS app).
+6.  Review and adapt the AI-generated output for your React application.
 
-## Contributing
+---
 
-Feel free to add new prompts or refine existing ones as you work through the conversion process. Ensure prompts are clear, focused, and reusable.
+*This library is part of the AngularJS-to-React AI Conversion Test Task.*
