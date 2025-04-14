@@ -1,66 +1,31 @@
-# AngularJS to React Conversion Prompt Library
+# AngularJS-to-React Conversion Prompt Library
 
-This library contains a set of prompts designed to help engineers convert AngularJS applications to React. Each prompt provides specific guidance for converting different aspects of an AngularJS application to their React equivalents.
+This library contains a collection of prompts designed to assist and accelerate the process of converting AngularJS applications to React. The prompts focus on breaking down the conversion into manageable steps and leveraging AI assistance for specific transformations.
 
-## Prompt Library Contents
+## Purpose
 
-| Prompt | Description |
-|--------|-------------|
-| [Project Setup](PROJECT-SETUP.md) | Setup a new React project structure and tooling |
-| [Components](COMPONENTS.md) | Convert AngularJS components and directives to React components |
-| [Services](SERVICES.md) | Convert AngularJS services to React hooks and context |
-| [Templates](TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
-| [Data Binding](DATA-BINDING.md) | Convert two-way data binding to React's unidirectional flow |
-| [Routing](ROUTING.md) | Convert ngRoute/UI-Router to React Router |
-| [Animations](ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
-| [Project Structure](PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
-| [Testing](TESTING.md) | Convert AngularJS tests to React testing approaches |
-| [Testing Setup (Playwright)](TESTING-SETUP-PLAYWRIGHT.md) | Setup Playwright for end-to-end testing in the React project |
+The goal of this library is to:
 
-## How to Use This Library
+1.  **Standardize** the conversion approach.
+2.  **Automate** repetitive transformation tasks using AI prompts.
+3.  **Guide** developers through specific AngularJS-to-React pattern conversions.
+4.  **Improve** efficiency and reduce the manual effort required for migration.
 
-1. **Identify the component to convert:**
-   - Determine what type of AngularJS code you're converting (component, service, etc.)
-   - Select the appropriate prompt from the library
+## Available Prompts
 
-2. **Use specific prompts for specific tasks:**
-   - Each prompt focuses on a particular conversion challenge
-   - Combine multiple prompts for complex components
+*   **[Initial Project Setup](./PROJECT-SETUP.md):** Guides the initial setup of the target React project repository, including adding the original AngularJS source as a submodule.
+*   **[Testing Setup with Playwright](./TESTING-SETUP-PLAYWRIGHT.md):** Details how to set up Playwright for visual regression testing, enabling side-by-side comparison and a "test-compare-fix-retest" workflow between the AngularJS and React applications.
+*   *(More prompts will be added here as the conversion progresses, covering components, services, routing, data binding, etc.)*
 
-3. **Understand the key differences:**
-   - Each prompt highlights the fundamental differences between AngularJS and React
-   - Focus on the mental model shifts, not just syntax changes
+## How to Use
 
-4. **Apply the principles:**
-   - Use the examples as guidance, not as copy-paste solutions
-   - Adapt the patterns to your specific codebase and requirements
+1.  **Identify** the specific conversion task you need to perform (e.g., setting up the project, converting a controller, setting up testing).
+2.  **Select** the relevant prompt from the list above.
+3.  **Copy** the prompt content.
+4.  **Paste** it into your AI assistant (like Gemini, ChatGPT, etc.).
+5.  **Provide** any necessary context (e.g., specific code snippets from your AngularJS application).
+6.  **Review and adapt** the AI-generated output for your specific needs.
 
-## Conversion Process
+## Contributing
 
-For a systematic conversion of an entire application, follow this suggested order:
-
-1. Set up project structure and tooling (use `PROJECT-SETUP.md`)
-2. Convert core services to hooks/context
-3. Convert shared components and utilities
-4. Convert page components
-5. Implement routing
-6. Add animations
-7. Set up testing frameworks (use `TESTING.md` and `TESTING-SETUP-PLAYWRIGHT.md`)
-8. Write tests
-
-## Conversion Principles
-
-- **Component-first:** React is component-centric, so structure your code around components
-- **Unidirectional data flow:** Replace two-way binding with props down, events up
-- **Hooks for lifecycle:** Use React hooks to replace AngularJS lifecycle methods
-- **Composition over inheritance:** Use component composition instead of directive inheritance
-- **Explicit over implicit:** Make dependencies and data flow explicit
-
-## Additional Resources
-
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [React Hooks API Reference](https://reactjs.org/docs/hooks-reference.html)
-- [React Router Documentation](https://reactrouter.com/en/main)
-- [Testing Library Documentation](https://testing-library.com/docs/)
-- [Playwright Documentation](https://playwright.dev/docs/intro)
-- [Lessons Learned](./LESSONS_LEARNED.md)
+Feel free to add new prompts or refine existing ones as you work through the conversion process. Ensure prompts are clear, focused, and reusable.
