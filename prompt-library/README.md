@@ -6,6 +6,8 @@ This library contains a set of prompts designed to help engineers convert Angula
 
 | Prompt | Description |
 |--------|-------------|
+| [Project Setup](PROJECT-SETUP.md) | Initial React project setup for AngularJS conversion |
+| [Testing Setup with Playwright](TESTING-SETUP-PLAYWRIGHT.md) | Setup visual comparison testing between AngularJS and React |
 | [Components](COMPONENTS.md) | Convert AngularJS components and directives to React components |
 | [Services](SERVICES.md) | Convert AngularJS services to React hooks and context |
 | [Templates](TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
@@ -37,13 +39,14 @@ This library contains a set of prompts designed to help engineers convert Angula
 
 For a systematic conversion of an entire application, follow this suggested order:
 
-1. Set up project structure
-2. Convert core services to hooks/context
-3. Convert shared components and utilities
-4. Convert page components
-5. Implement routing
-6. Add animations
-7. Set up testing
+1. Set up project structure ([Project Setup](PROJECT-SETUP.md))
+2. Set up testing infrastructure ([Testing Setup with Playwright](TESTING-SETUP-PLAYWRIGHT.md))
+3. Convert core services to hooks/context
+4. Convert shared components and utilities
+5. Convert page components
+6. Implement routing
+7. Add animations
+8. Set up testing
 
 ## Conversion Principles
 
