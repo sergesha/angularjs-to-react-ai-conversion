@@ -1,39 +1,34 @@
 # AngularJS to React Conversion Prompt Library
 
-This library contains a set of prompts designed to help engineers convert AngularJS applications to React. Each prompt provides specific guidance for converting different aspects of an AngularJS application to their React equivalents.
+This library contains a collection of prompts designed to assist in the conversion of AngularJS applications to React, leveraging AI assistance where possible.
 
-## Prompt Library Contents
+## Purpose
 
-| Prompt | Description |
-|--------|-------------|
-| [Project Setup](PROJECT-SETUP.md) | Initial React project setup for AngularJS conversion |
-| [Testing Setup with Playwright](TESTING-SETUP-PLAYWRIGHT.md) | Setup visual comparison testing between AngularJS and React |
-| [Components](COMPONENTS.md) | Convert AngularJS components and directives to React components |
-| [Services](SERVICES.md) | Convert AngularJS services to React hooks and context |
-| [Templates](TEMPLATES.md) | Convert AngularJS templates and directives to JSX |
-| [Data Binding](DATA-BINDING.md) | Convert two-way data binding to React's unidirectional flow |
-| [Routing](ROUTING.md) | Convert ngRoute/UI-Router to React Router |
-| [Animations](ANIMATIONS.md) | Convert ngAnimate to React animation approaches |
-| [Project Structure](PROJECT-STRUCTURE.md) | Convert AngularJS project organization to React |
-| [Testing](TESTING.md) | Convert AngularJS tests to React testing approaches |
+The goal of these prompts is to:
 
-## How to Use This Library
+1.  **Standardize:** Provide a consistent approach to common conversion tasks.
+2.  **Automate:** Guide AI tools to perform specific, repeatable transformations.
+3.  **Accelerate:** Speed up the migration process by breaking down complex tasks into manageable, promptable steps.
 
-1. **Identify the component to convert:**
-   - Determine what type of AngularJS code you're converting (component, service, etc.)
-   - Select the appropriate prompt from the library
+## Available Prompts
 
-2. **Use specific prompts for specific tasks:**
-   - Each prompt focuses on a particular conversion challenge
-   - Combine multiple prompts for complex components
+*   **[Project Setup](./PROJECT-SETUP.md):** Guides the creation of the React project repository, cloning the source AngularJS app as a submodule, and initializing the basic React structure.
+*   **[Testing Setup with Playwright](./TESTING-SETUP-PLAYWRIGHT.md):** Details how to set up Playwright for visual regression testing, comparing the running AngularJS and React applications side-by-side.
+*   **[Component Conversion](./COMPONENT-CONVERSION.md):** Provides detailed steps for converting AngularJS components to React functional components, including handling of state and props.
+*   **[Service Conversion](./SERVICE-CONVERSION.md):** Guides the transformation of AngularJS services into React context providers or custom hooks.
+*   **[Routing Setup](./ROUTING-SETUP.md):** Offers instructions on setting up React Router to replace AngularJS routing.
+*   _(More prompts will be added here as the conversion progresses, covering additional components, services, routing, etc.)_
 
-3. **Understand the key differences:**
-   - Each prompt highlights the fundamental differences between AngularJS and React
-   - Focus on the mental model shifts, not just syntax changes
+## How to Use
 
-4. **Apply the principles:**
-   - Use the examples as guidance, not as copy-paste solutions
-   - Adapt the patterns to your specific codebase and requirements
+1.  Identify the conversion task you need to perform (e.g., setting up the project, converting a specific component).
+2.  Find the relevant prompt in this library.
+3.  Copy the prompt content.
+4.  Paste it into your AI assistant (like Gemini, ChatGPT, etc.).
+5.  Provide any necessary context specific to your application (e.g., code snippets from your AngularJS app).
+6.  Review and adapt the AI-generated output for your React application.
+
+---
 
 ## Conversion Process
 
@@ -63,3 +58,5 @@ For a systematic conversion of an entire application, follow this suggested orde
 - [React Router Documentation](https://reactrouter.com/en/main)
 - [Testing Library Documentation](https://testing-library.com/docs/)
 - [Lessons Learned](./LESSONS_LEARNED.md)
+
+*This library is part of the AngularJS-to-React AI Conversion Test Task.*
